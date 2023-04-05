@@ -1,0 +1,83 @@
+#contCen {
+  margin: 6%;
+}
+#busqueda {
+  width: 80%;
+  border-radius: 3px;
+  background-color: rgb(238, 235, 245);
+}
+#barraBusqueda {
+  margin-bottom: 2%;
+  margin-left: 10%;
+}
+#btnBus {
+  box-sizing: content-box;
+  padding: 1.37%;
+  transform: translate(0%, -20%);
+  background: url(../imagenesDef/lupa.jpg);
+  background-size: 22px;
+}
+
+.Catcur,
+.niveles,
+.titEquipos:hover {
+  color: rgb(214, 203, 240);
+}
+.titEquipos {
+  color: rgb(214, 203, 240);
+}
+
+table {
+  border-collapse: collapse;
+}
+td,
+th {
+  margin: 3%;
+  padding: 10px;
+  font-size: large;
+}
+.Equipos {
+  margin: 10px;
+  padding: 15px;
+  background-color: rgba(73, 68, 87, 0.788);
+  border-radius: 4px;
+  padding-bottom: 7px;
+}
+
+.EquiposBarraBus {
+  margin-left: 2px;
+  margin-right: 0px;
+}
+.contenedorEquipos {
+  margin-left: 0;
+}
+.niveles {
+  text-align: right;
+  margin-bottom: 0%;
+}
+body {
+  font-family: "Raleway", sans-serif;
+  /*font-family: 'Nunito', sans-serif;*/
+  background: url(../imagenesDef/Crashea3.jpg);
+}
+
+@media screen and (min-width: 1280px) {
+  body {
+    background: url(../imagenesDef/Crashea3.jpg) no-repeat center top;
+    background-size: cover;
+  }
+}
+
+/* Flexbox */
+.contenedorFlex {
+  display: flex;
+  /*flex-direction: column;*/
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+
+/*
+.flexItems {
+  flex: 1;
+}
+*/

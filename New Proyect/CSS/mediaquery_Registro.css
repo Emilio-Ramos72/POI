@@ -1,0 +1,37 @@
+@media screen and (max-width: 1279px) {
+    label {font-size: large;}
+    h3 {font-size: larger;}
+    .controls {font-size: 70%;}
+    .ER {font-size: medium;}
+    body{
+        background: url(../imagenesDef/Crashea3.jpg);
+    }
+    .radio-button {
+        font-size: 1.5vh;        
+    }
+}
+
+
+
+@media screen and (min-width: 1280px) {
+    label {
+        font-size: 2vh;
+    }
+    h3 {font-size: 4vh;}
+    .controls {font-size: 2vh;}
+    .ER {font-size: 2vh;}
+    body{
+        background: url(../imagenesDef/Crashea3.jpg) no-repeat center top;
+        background-size: cover;
+    }
+    .radio-button {
+        
+        font-size: 2vh;        
+    }
+}
+
+:root{
+--variable: rgb(170, 54, 54);
+
+
+}

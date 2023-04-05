@@ -1,0 +1,51 @@
+@media screen and (max-width: 1279px) {
+  .avatar {
+    position: absolute;
+    border-radius: 50%;
+    width: 30%;
+    height: 30%;
+    top: -20%;
+    left: 35%;
+    border: 3px solid rgba(96, 90, 114, 0.692);
+  }
+  #ER {
+    padding: 2%;
+    margin-top: 5%;
+    font-size: 100%;
+  }
+  .Reg {
+    font-size: 100%;
+  }
+  label {
+    font-size: 100%;
+  }
+  input {
+    font-size: 100%;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .avatar {
+    position: absolute;
+    border-radius: 50%;
+    width: 30%;
+    height: 40%;
+    top: -35%;
+    left: 35%;
+    border: 3px solid rgba(96, 90, 114, 0.692);
+  }
+  #ER {
+    padding: 2%;
+    margin-top: 5%;
+    font-size: 2vh;
+  }
+  .Reg {
+    font-size: 2.5vh;
+  }
+  label {
+    font-size: 2vh;
+  }
+  input {
+    font-size: 2vh;
+  }
+}
