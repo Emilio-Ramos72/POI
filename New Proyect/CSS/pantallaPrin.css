@@ -1,5 +1,10 @@
 #contCen {
+  /*
   margin: 6%;
+  */
+  margin-left: 6%;
+  margin-right: 6%;
+  margin-top: 2%;
 }
 #busqueda {
   width: 80%;
@@ -20,10 +25,15 @@
 
 .Catcur,
 .niveles,
-.titEquipos:hover {
-  color: rgb(214, 203, 240);
+.titEquipos:hover,
+.titTarea:hover {
+  color: rgb(191, 183, 211);
 }
 .titEquipos {
+  color: rgb(214, 203, 240);
+}
+.titTarea {
+  font-size: 24px;
   color: rgb(214, 203, 240);
 }
 
@@ -74,6 +84,10 @@ body {
   /*flex-direction: column;*/
   justify-content: space-evenly;
   flex-wrap: wrap;
+}
+
+.columnFlex {
+  flex-direction: column;
 }
 
 /*

@@ -1,33 +1,42 @@
 function llevameAInSes() {
-    window.location.href="IS.html";
+  window.location.href = "IS.html";
 }
 function llevamePerfil() {
-    window.location.href = "perfil.html";
+  window.location.href = "perfil.html";
 }
 function llevameRegistrarme() {
-    window.location.href = "Registro.htm";
+  window.location.href = "Registro.htm";
 }
 function llevamePanP() {
-    window.location.href = "index.html";
+  window.location.href = "index.html";
 }
 function llevameAmisCursos() {
-    window.location.href = "misCursos.html";
+  window.location.href = "misCursos.html";
 }
-function llevameAverCursos() {
-    window.location.href = "VerCurso.html";
+function llevameAverEquipos() {
+  window.location.href = "ChatEquipo.html";
 }
 function llevameCrearCurso() {
-    window.location.href = "subirCurso.html";
+  window.location.href = "subirCurso.html";
 }
 function llevameAhistorial() {
-    window.location.href = "historialAl.html";
+  window.location.href = "historialAl.html";
 }
 function llevameAVentas() {
-    window.location.href = "Ventas.html";
+  window.location.href = "Ventas.html";
 }
 function llevameAEdPerfil() {
-    window.location.href = "editarPerfil.html";
+  window.location.href = "editarPerfil.html";
 }
 function llevameANewCat() {
-    window.location.href = "Categoria.html";
+  window.location.href = "Categoria.html";
+}
+function llevameAEquipos() {
+  window.location.href = "PantallaPrinc.html";
+}
+function llevameAMensajes() {
+  window.location.href = "Mensajes.html";
+}
+function llevameATareas() {
+  window.location.href = "Tareas.html";
 }
