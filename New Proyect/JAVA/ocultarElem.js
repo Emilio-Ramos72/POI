@@ -19,10 +19,10 @@ $(document).ready(function () {
                 var obj = JSON.parse( Jason);
                 console.log(data);
 
-                document.getElementById("imgAvatarUsuario").style.display = 'inline';
-                document.getElementById("cerrarSes").style.display = 'inline';
-                document.getElementById("navVentas").style.display = 'none';
-                document.getElementById("iniciaSes").style.display = 'none';
+                
+                //document.getElementById("cerrarSes").style.display = 'inline';
+                //document.getElementById("navVentas").style.display = 'none';
+                //document.getElementById("iniciaSes").style.display = 'none';
                 document.getElementById("imgAvatarUsuario").src = "../php/profilePicture.php";
                     
                

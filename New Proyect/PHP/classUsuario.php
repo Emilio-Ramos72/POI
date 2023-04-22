@@ -60,15 +60,15 @@
                 $correo=$_SESSION["correo"];
                
                 
-           $json = [
+                $json = [
                 "idUsuario" => $idUs,
                 "nombre" => $nombre,
                 
                 "nickname"=> $nick,
                 "correo"=> $correo,
                 
-            ];
-            return $json;
+                ];
+                return $json;
             }else{
                 $success="fail";
                 return $success;
