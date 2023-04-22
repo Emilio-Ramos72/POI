@@ -7,12 +7,12 @@
             //son los datos del json
             $nombre = $datos["nombre"];
             
-            //$nickname = $datos["nickname"];
-            //$correo = $datos["correo"];
+            $nickname = $datos["nickname"];
+            $correo = $datos["correo"];
             $password = $datos["password"];
             
             
-            $query = "Call sp_USUARIO_C('$nombre','$password');";
+            $query = "Call sp_USUARIO_C('$nombre','$password','$foto','$nickname','$correo');";
             $verificacion = parent::rowsAfectados($query);
             
             if($verificacion == 1){

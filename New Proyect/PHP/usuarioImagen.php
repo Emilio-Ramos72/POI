@@ -8,12 +8,9 @@ $_usuario = new Usuario;
 
     if($_POST['opc']==1){
        $name=$_POST['nombre'];
-        
         $nick=$_POST['nickname'];
-
         $correo=$_POST['correo'];
         $password=$_POST['password'];
-        
         
         $file_tmpi = $_FILES['foto']['tmp_name'];
         $file = file_get_contents( $file_tmpi);
@@ -21,9 +18,7 @@ $_usuario = new Usuario;
 
         $json = [
             "nombre" => $name,
-            
             "nickname"=> $nick,
-
             "correo"=> $correo,
             "password"=> $password,
         ];
