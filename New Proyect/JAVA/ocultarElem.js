@@ -1,6 +1,6 @@
 $(document).ready(function () {
     ocultarElNav();
-    buscar();
+    //buscar();
     $("body").on("click", "#btnBus", function () {
         buscar();
     });
@@ -18,21 +18,14 @@ $(document).ready(function () {
                 var Jason = data;
                 var obj = JSON.parse( Jason);
                 console.log(data);
-                if(obj['esMaestro']==true){
-                    document.getElementById("imgAvatarUsuario").style.display = 'inline';
-                    document.getElementById("cerrarSes").style.display = 'inline';
-                    document.getElementById("navHistorial").style.display = 'none';
-                    document.getElementById("iniciaSes").style.display = 'none';
-                    document.getElementById("imgAvatarUsuario").src = "../php/profilePicture.php";
-                }else{
-                    if(obj['esMaestro']==false){
-                        document.getElementById("imgAvatarUsuario").style.display = 'inline';
-                        document.getElementById("cerrarSes").style.display = 'inline';
-                        document.getElementById("navVentas").style.display = 'none';
-                        document.getElementById("iniciaSes").style.display = 'none';
-                        document.getElementById("imgAvatarUsuario").src = "../php/profilePicture.php";
-                    }
-                }
+
+                document.getElementById("imgAvatarUsuario").style.display = 'inline';
+                document.getElementById("cerrarSes").style.display = 'inline';
+                document.getElementById("navVentas").style.display = 'none';
+                document.getElementById("iniciaSes").style.display = 'none';
+                document.getElementById("imgAvatarUsuario").src = "../php/profilePicture.php";
+                    
+               
                 
             })
     }

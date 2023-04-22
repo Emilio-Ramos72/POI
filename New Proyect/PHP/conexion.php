@@ -54,22 +54,22 @@
        public function ObtenerUsuario($query){
         $resultado = mysqli_query($this->conexion,$query);
         $row = mysqli_fetch_array($resultado); 
-        if(isset($row["nombre"]) ){
+        if(isset($row["NOMBRE"]) ){
+          
           //session_start();
-          $_SESSION["id"]=$row["id_usuario"];
-          $_SESSION["nombre"]=$row["nombre"];
+          //los nombres de los rows tienen que ser identicos a los de la base de datos
+          //mayusculas y todo
+          $_SESSION["id"]=$row["ID"];
+          $_SESSION["nombre"]=$row["NOMBRE"];
           
-          $_SESSION["nickname"]=$row["nickname"];
-          
-          $_SESSION["imagenP"]=$row["imagenPerfil"];
+          $_SESSION["nickname"]=$row["USUARIO"];
+          $_SESSION["imagenP"]=$row["AVATAR"];
           return 1;
         }
         else
         {
-
           return 0;
-          
-          }
+        }
        }
 
        private function convertirUTF8($array){

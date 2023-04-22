@@ -12,7 +12,8 @@
             $password = $datos["password"];
             
             
-            $query = "Call sp_USUARIO_C('$nombre','$password','$foto','$nickname','$correo');";
+            $query = "Call sp_USUARIO_C('$nombre','$password','$foto',
+            '$nickname','$correo');";
             $verificacion = parent::rowsAfectados($query);
             
             if($verificacion == 1){
@@ -30,8 +31,8 @@
             $datos = json_decode($json,true);
             //son los datos del json
             $correo = $datos["correo"];
-            $contrasena = $datos["contrasena"];
-            $query = "Call obtenerPerfil('$correo','$contrasena');";
+            $password = $datos["password"];
+            $query = "Call sp_BuscarUsuario('$password','$correo');";
             
             $verificacion = parent::ObtenerUsuario($query);
             if($verificacion==1){
@@ -40,10 +41,12 @@
                
                 $success="sesionEncontrada";
                 return $success;
+                
             }
             else{
                 $success="sesionNoExiste";
                 return $success;
+               
             }
         }
 
@@ -52,18 +55,18 @@
             if(isset($_SESSION["nombre"])){
                 $idUs=$_SESSION["id"];
                 $nombre=$_SESSION["nombre"];
-                $apellidos=$_SESSION["apellidos"];
+                
                 $nick=$_SESSION["nickname"];
                 $correo=$_SESSION["correo"];
-                $esProfe=$_SESSION["esMaestro"];
+               
                 
            $json = [
                 "idUsuario" => $idUs,
                 "nombre" => $nombre,
-                "apellidos"=> $apellidos,
+                
                 "nickname"=> $nick,
                 "correo"=> $correo,
-                "esMaestro"=> $esProfe
+                
             ];
             return $json;
             }else{
