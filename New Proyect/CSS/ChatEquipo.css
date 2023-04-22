@@ -1,0 +1,145 @@
+body {
+  font-family: "Raleway", sans-serif;
+  /*font-family: 'Nunito', sans-serif;*/
+  background: url(../imagenesDef/Crashea3.jpg);
+}
+
+@media screen and (min-width: 1280px) {
+  body {
+    background: url(../imagenesDef/Crashea3.jpg) no-repeat center top;
+    background-size: cover;
+  }
+}
+h3 {
+  margin: 0.5%;
+}
+p {
+  margin-bottom: 0px;
+}
+
+#contCen {
+  /*
+  margin-top: 2%;
+  margin: 6%;
+  */
+  margin-left: 6%;
+  margin-right: 6%;
+}
+#userInfo {
+  justify-content: start;
+  margin-inline: 1%;
+}
+#publication {
+  background-color: blueviolet;
+  border-radius: 5px;
+  margin: 0.5% 5%;
+}
+#response {
+  background-color: rgba(119, 61, 174, 0.789);
+  border-radius: 0px 0px 5px 5px;
+}
+#imgUsuario {
+  border-radius: 50%;
+  max-width: 50px;
+}
+#barraEquipo {
+  display: flex;
+  gap: 1%;
+  padding: 1%;
+  background-color: rgb(79, 69, 105);
+  border-radius: 0px 0px 5px 5px;
+}
+#imgEquipo {
+  border-radius: 15%;
+  max-width: 50px;
+  margin: 0.25%;
+}
+#nombreEquipo {
+  margin: 0.25%;
+  font-size: 30px;
+  color: wheat;
+}
+#barraEscritura {
+  background-color: rgb(79, 69, 105);
+  margin-top: 5px;
+  padding: 0.5%;
+  border-radius: 5px 5px 0px 0px;
+}
+#barraEscritura > input {
+  flex-grow: 1;
+  margin-right: 0.5%;
+  border-radius: 5px;
+}
+#barraEscritura > button {
+  border-radius: 5px;
+}
+
+#botonesEquipo > button {
+  font-size: 18px;
+  border: none;
+  color: rgb(214, 203, 240);
+  background-color: rgb(79, 69, 105);
+  margin-right: 5px;
+  margin-top: 5%;
+}
+
+.box {
+  padding: 1%;
+  background-color: rgba(133, 62, 200, 0.887);
+  border-radius: 5px;
+  color: wheat;
+}
+
+/* Flex */
+.contenedorFlex {
+  display: flex;
+  justify-content: space-evenly;
+
+  height: 100%;
+  margin-inline: 6%;
+}
+
+.columnFlex {
+  background-color: rgba(51, 26, 74, 0.635);
+  flex-direction: column;
+}
+
+.barraEquipo {
+  align-self: start;
+}
+.barraEscritura {
+  align-self: end;
+}
+
+/* Grid */
+.contenedorGrid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 10px;
+  grid-template-rows: repeat(12, 1fr);
+}
+
+.item {
+  grid-row: span 1;
+  grid-column: span 1;
+  color: wheat;
+}
+
+/*
+ chat == equipo
+
+ tablas 
+
+ relacion 
+
+ - publicacion > Equipos
+
+ - Usuarios > Equipos
+
+----------------------
+
+Tareas cont id Equipo
+
+id Equipo -> cuales usaurios
+
+*/

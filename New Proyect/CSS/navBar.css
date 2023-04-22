@@ -1,0 +1,114 @@
+.navbar-brand,
+.navbar-brand:hover {
+  color: rgb(214, 203, 240);
+}
+#imgAvatarUsuario {
+  border-radius: 50%;
+  /*
+  display: none;
+  */
+}
+.navbar-brand {
+  font-size: x-large;
+}
+#elementosNav {
+  display: flex;
+  position: absolute;
+  top: 5px;
+  right: 30px;
+  background-color: rgb(73, 62, 102);
+}
+.dropbtn {
+  background-color: rgb(73, 62, 102);
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+#navButtonsCont {
+  display: flex;
+  gap: 1%;
+}
+
+.navButtons {
+  border: none;
+  color: rgb(214, 203, 240);
+  background-color: rgb(73, 62, 102);
+  width: 75px;
+  margin-right: 5px;
+}
+
+.navButtons:focus {
+  color: rgb(168, 154, 201);
+  background-color: rgb(50, 40, 76);
+}
+
+/*
+#iniciaSes {
+  margin-top: 10px;
+  margin-left: 1px;
+  border: none;
+  color: rgb(214, 203, 240);
+  background-color: rgb(73, 62, 102);
+}
+
+#cerrarSes {
+  display: inline;
+  margin-top: 10px;
+  margin-left: 1px;
+  border: none;
+  color: rgb(214, 203, 240);
+  background-color: rgb(73, 62, 102);
+}
+*/
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: rgb(73, 62, 102);
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  right: 0;
+  border-radius: 3px;
+  color: rgb(214, 203, 240);
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  color: rgb(214, 203, 240);
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {
+  background-color: rgb(89, 77, 124);
+  border-radius: 3px;
+}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {
+  background-color: rgb(101, 86, 143);
+}
+body {
+  font-family: "Raleway", sans-serif;
+  margin-right: -4px;
+  /*font-family: 'Nunito', sans-serif;*/
+}
