@@ -13,6 +13,7 @@
     />
     <link rel="stylesheet" href="../CSS/pantallaPrin.css" />
     <link rel="stylesheet" href="../CSS/navBar.css" />
+    <link rel="stylesheet" href="../CSS/TeamCreation.css" />
     <script type="text/javascript" src="../JAVA/jquery-3.5.1.min.js"></script>
     <script type="text/javascript" src="../JAVA/llevameA.js"></script>
 
@@ -105,7 +106,24 @@
               required
             />
             <h3>Seleccionar Integrantes</h3>
-            <input class="controls" type="text" name="" id="" />
+            <!-- BUSQUEDA INTEGRANTES -->
+            <input
+              class="controls"
+              class="form-error"
+              type="text"
+              name="membername"
+              id="membername"
+              placeholder="Seleccione una imagen"
+              onkeyup="filtrerUsers()"
+              required
+            />
+            <div id="dropcontent"></div>
+
+            <!-- DROP DE LOS ACTIVOS-->
+            <div class="controls dropTeamates">
+              <span>hello world</span>
+              <div class="dropContent"></div>
+            </div>
             <br />
             <input
               type="button"

@@ -76,6 +76,25 @@
             }
         }
 
+        public function getFilterUser($json){
+            header('Content-Type: application/json');
+
+            $datos = json_decode($json,true);
+            //son los datos del json
+            $criteria = $datos["filtro"]; /*filter value*/
+            $query = "call sp_FilterUsuario('$criteria');";
+            
+            $Perfiles = parent::obtenerDatos($query);
+            if(isset($Perfiles[0]["NOMBRE"])){
+                return json_encode($Perfiles);
+            }
+            else{
+                $success="NoHayPerfiles";
+                return $success;
+               
+            }
+        }
+
 
     }
 ?>

@@ -38,3 +38,39 @@ function CreateTeam() {
       //"result" => array()
     });
 }
+function filtrerUsers() {
+  var filtro = document.getElementById("membername").value;
+  var secc = document.getElementById("dropcontent");
+
+  if (filtro != null) {
+    var opc = 5;
+
+    let Body = { filtro, opc };
+    let jsonBody = JSON.stringify(Body);
+
+    fetch("../php/usuario.php", {
+      method: "POST",
+      header: { "Content-Type": "application/json" },
+      body: jsonBody,
+    })
+      .then((response) => {
+        return response.text();
+      })
+      .then((data) => {
+        var Jason = data;
+        if (Jason != "NoHayPerfiles") {
+          alert("Registro exitoso");
+          //console.log(Jason);
+          console.log(Jason[1]["NOMBRE"]);
+          console.log(data[0]["NOMBRE"]);
+          secc.append("<p'>" + Jason[0]["NOMBRE"] + "</p>");
+
+          for (var i in Jason) {
+            secc.append("<p'>" + Jason[i]["NOMBRE"] + "</p>");
+          }
+        } else alert(Jason.result);
+        //"status" => "ok",
+        //"result" => array()
+      });
+  }
+}
