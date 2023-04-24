@@ -16,9 +16,9 @@
     <script type="text/javascript" src="../JAVA/jquery-3.5.1.min.js"></script>
     <script type="text/javascript" src="../JAVA/llevameA.js"></script>
 
-  
     <script type="text/javascript" src="../JAVA/ocultarElem.js"></script>
-  
+    <script type="text/javascript" src="../JAVA/CreateTeams.js"></script>
+
     <link
       href="https://fonts.googleapis.com/css2?family=Nunito:wght@300&family=Raleway:wght@400;411;437&display=swap"
       rel="stylesheet"
@@ -78,7 +78,43 @@
     <div id="contenidoCentral">
       <div id="contCen">
         <div class="contenedorEquipos">
-          <h1 class="Catcur">Equipos</h1>
+          <h1 class="Catcur" style="display: inline-block">Equipos</h1>
+          <input
+            type="button"
+            id="btncreate"
+            class="btncreate"
+            value=" + "
+            onclick="HideUnhideSel()"
+          />
+          <div id="CreateTeams" style="display: none" class="createEquipo">
+            <h3>Nombre del equipo</h3>
+            <input
+              type="text"
+              id="nameequipo"
+              class="controls"
+              placeholder=" Favor de dar un nombre al equipo"
+            />
+            <h3>Imagen del Equipo</h3>
+            <input
+              class="controls"
+              class="form-error"
+              type="file"
+              name="image"
+              id="teamimage"
+              placeholder="Seleccione una imagen"
+              required
+            />
+            <h3>Seleccionar Integrantes</h3>
+            <input class="controls" type="text" name="" id="" />
+            <br />
+            <input
+              type="button"
+              class="submit"
+              value="Crear Equipo"
+              onclick="CreateTeam()"
+            />
+          </div>
+
           <div class="contenedorFlex">
             <!-- Contenedor -->
 

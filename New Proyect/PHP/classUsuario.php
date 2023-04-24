@@ -14,6 +14,7 @@
             
             $query = "Call sp_USUARIO_C('$nombre','$password','$foto',
             '$nickname','$correo');";
+            
             $verificacion = parent::rowsAfectados($query);
             
             if($verificacion == 1){
