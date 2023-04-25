@@ -132,6 +132,7 @@ function sendMessage() {
   Body = { mensaje, id, opc };
   jsonBody = JSON.stringify(Body);
 
+  //console.log(Body);
   //fetch para crear mensaje
 
   fetch("../php/mensajes.php", {
@@ -144,7 +145,7 @@ function sendMessage() {
     })
     .then((data) => {
       var Jason = data;
-      //console.log(Jason);
+      console.log(Jason);
       if (Jason != "NoSePudoCrearUnMensaje") {
         alert("Podemos crear un nuevo mensaje");
         //CUANDO ENVIE EL MENSAJE
