@@ -113,20 +113,21 @@
               type="text"
               name="membername"
               id="membername"
-              placeholder="Seleccione una imagen"
-              onkeyup="filtrerUsers()"
+              placeholder="Busque algun integrante"
+              onkeyup="TeamfiltrerUsers()"
               required
             />
-            <div id="dropcontent"></div>
+            <div id="findusers">Test</div>
 
             <!-- DROP DE LOS ACTIVOS-->
             <div class="controls dropTeamates">
-              <span>hello world</span>
-              <div class="dropContent"></div>
+              <span id="lastMember">Miembros</span>
+              <div id="dropcontent" class="dropContent"></div>
             </div>
             <br />
             <input
               type="button"
+              id="CreateTeambtn"
               class="submit"
               value="Crear Equipo"
               onclick="CreateTeam()"

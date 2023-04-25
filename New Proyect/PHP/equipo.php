@@ -18,4 +18,19 @@ if($_POST['opc']==1){
 
 
      $jala = $_equipo->CrearEquipo($coso, $blob);
+     echo $jala;
  }
+ if($_POST['opc']==2){
+     $jala = $_equipo->LastTeam();
+     echo $jala;
+ }
+ if($_POST['opc']==3){
+    $jala = $_equipo->AddMember($_POST["Team_Id"], $_POST["Usuario_Id"]);
+    echo $jala;
+}
+if($_POST['opc']==4){
+    $jala = $_equipo->ShowTeam($_POST["Team_Id"]);
+    echo $jala;
+}
+
+
