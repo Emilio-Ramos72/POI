@@ -1,12 +1,13 @@
 Team_trampa = 0;
 $(document).ready(function () {
-  showteamdata();
-
   Team_trampa = getQueryVariable("id");
   var secc = document.getElementById("publications");
   secc.innerHTML = "";
 
   var team = Team_trampa;
+  //console.log("Team ", team);
+
+  showteamdata();
 
   var opc = 2;
   Body = { team, opc };
@@ -28,15 +29,14 @@ $(document).ready(function () {
         alert("Podemos ver todos los Posts");
         for (var i in Jason) {
           secc.innerHTML +=
-            "<div id='publication'><div class='box'><div id='userInfo' class='contenedorFlex'><img id='imgUsuario' src='../ImagenesaCambiar/referenciaCampoFloresProyATAH.png' alt='' /><h3>Nombre</h3><p>" +
+            "<div id='publication'><div class='box'><div id='userInfo' class='contenedorFlex'><img id='imgUsuario' src='../ImagenesaCambiar/referenciaCampoFloresProyATAH.png' alt='' /><h3>" +
+            Jason[i]["NOMBRE"] +
+            "</h3><p>" +
             Jason[i]["HORA"] +
             "</p></div><hr /><div id='publicationInfo'>" +
             Jason[i]["PUBLICACION"] +
             "</div></div><div id='response' class='box'><p>response</p></div></div>";
         }
-        //CUANDO ENVIE EL MENSAJE
-
-        //-----
       } else alert(Jason.result);
     });
 
@@ -121,35 +121,7 @@ function sendPost() {
             "</p></div><hr /><div id='publicationInfo'>" +
             Jason[i]["PUBLICACION"] +
             "</div></div><div id='response' class='box'><p>response</p></div></div>";
-
-          /*
-"<div id='publication'>
-            <div class='box'>
-              <div id='userInfo' class='contenedorFlex'>
-                <img
-                  id='imgUsuario'
-                  src='../ImagenesaCambiar/referenciaCampoFloresProyATAH.png'
-                  alt=''
-                />
-                <h3>Nombre</h3>
-                <p>"+ Jason[i]["HORA"]+"</p>
-              </div>
-              <hr />
-              <div id='publicationInfo'>"+ Jason[i]["PUBLICACION"]+"</div>
-            </div>
-            <div id='response' class='box'><p>response</p></div>
-          </div>"
-
-
-*/
         }
-        //CUANDO ENVIE EL MENSAJE
-
-        //-----
       } else alert(Jason.result);
     });
-
-  //fetch para crear la publicacion
-
-  //----
 }

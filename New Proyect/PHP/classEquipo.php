@@ -83,6 +83,27 @@
 
         }
 
+        public function MemberofTeam(){
+            $id = $_SESSION['id'];
+
+
+            $query = "Call sp_MIEMBRODEEQUIPO_SHOW($id);";
+            
+            $mensajes = parent::obtenerDatos($query);
+            
+            if(isset($mensajes[0]["IDEQUIPO"])){           
+                return json_encode($mensajes);
+             }else{
+                 $success="fail";
+                 return $success;
+             }
+
+
+        }
+
+
+
+
     
     
     

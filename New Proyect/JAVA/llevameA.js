@@ -13,8 +13,9 @@ function llevamePanP() {
 function llevameAmisCursos() {
   window.location.href = "misCursos.html";
 }
-function llevameAverEquipos() {
-  window.location.href = "ChatEquipo.html";
+//Ver Equipo, agregar ID de equipo
+function llevameAverEquipos(id) {
+  window.location.href = "ChatEquipo.html?id=" + id;
 }
 function llevameCrearCurso() {
   window.location.href = "subirCurso.html";

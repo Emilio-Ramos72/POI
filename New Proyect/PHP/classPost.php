@@ -6,11 +6,11 @@
             $datos = json_decode($json,true);
             //son los datos del json
             $mensaje = $datos["mensaje"];
-            
+            $creador = $_SESSION["id"];
             $equipo = $datos["team"];
            
         
-            $query = "Call sp_PUBLICACIONES_C('$mensaje',null,$equipo);";
+            $query = "Call sp_PUBLICACIONES_C('$mensaje',null,$equipo, $creador);";
             
             $verificacion = parent::rowsAfectados($query);
             if($verificacion == 1){
@@ -42,8 +42,9 @@
 
             $query2 = "CALL sp_PUBLICACIONES_SHOWALL($equipo);";
                 $mensajes = parent::obtenerDatos($query2);
+                //return $query2;
                 
-                if(isset($mensajes[0]["ID"])){           
+                if(isset($mensajes[0]["EQUIPO"])){           
                    return json_encode($mensajes);
                 }else{
                     $success="NoSePudoVerUnPost";

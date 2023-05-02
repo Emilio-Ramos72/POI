@@ -32,5 +32,9 @@ if($_POST['opc']==4){
     $jala = $_equipo->ShowTeam($_POST["Team_Id"]);
     echo $jala;
 }
+if($_POST['opc']==5){
+    $jala = $_equipo->MemberofTeam();
+    echo $jala;
+}
 
 
