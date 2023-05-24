@@ -37,6 +37,10 @@ function Registrar(form) {
       console.log(Jason);
       if (Jason === "success") {
         alert("Registro exitoso");
+        setCookie("mail", correo, 5);
+
+        setCookie("pass", password, 5);
+
         window.location.href = "Index.html";
       } else alert(Jason.result);
       //"status" => "ok",

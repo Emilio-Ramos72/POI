@@ -79,6 +79,28 @@ $(document).ready(function () {
           nombre.setAttribute("id", "Team" + Jason[0]["ID"]);
           foto.setAttribute("src", "../PHP/TeamPicture.php?id=" + teamid);
 
+          var FoDatos2 = new FormData();
+          opc = 6;
+
+          FoDatos2.append("opc", opc);
+
+          fetch("../php/equipo.php", { method: "POST", body: FoDatos2 })
+            .then((response) => {
+              return response.text();
+            })
+            .then((data2) => {
+              console.log(
+                "La data de la session actual es:",
+                data2,
+                "Y el creador es: ",
+                Jason[0]["CREADOR"]
+              );
+              var createTarea = document.getElementById("CrearTarea");
+              if (data2 == Jason[0]["CREADOR"]) {
+                createTarea.style.display = "inline";
+              }
+            });
+
           //crear coneccion entre equipos e integrantes
         } else alert(Jason.result);
         //"status" => "ok",
@@ -124,4 +146,37 @@ function sendPost() {
         }
       } else alert(Jason.result);
     });
+}
+
+function createTarea() {
+  var titulo = document.getElementById("nametarea").value;
+  var descripcion = document.getElementById("desctarea").value;
+
+  var opc = 1;
+
+  Body = { titulo, descripcion, Team_trampa, opc };
+  console.log(Body);
+  jsonBody = JSON.stringify(Body);
+
+  fetch("../php/Tarea.php", {
+    method: "POST",
+    header: { "Content-Type": "application/json" },
+    body: jsonBody,
+  })
+    .then((response) => {
+      return response.text();
+    })
+    .then((data) => {
+      var Jason = data;
+      console.log(Jason);
+      if (Jason != "fail") {
+      } else alert(Jason.result);
+    });
+
+  //console.log(titulo);
+  //console.log(descripcion);
+
+  //fodatos a fetch
+
+  //llamar a base de datos para crear tareas
 }

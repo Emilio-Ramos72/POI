@@ -1,5 +1,8 @@
 function llevameAInSes() {
-  window.location.href = "IS.html";
+  window.location.href = "index.html";
+
+  borrarCookie("pass");
+  borrarCookie("mail");
 }
 function llevamePerfil() {
   window.location.href = "perfil.html";
@@ -40,4 +43,12 @@ function llevameAMensajes() {
 }
 function llevameATareas() {
   window.location.href = "Tareas.html";
+}
+function llevameATarea(id) {
+  window.location.href = "ViewTarea.html?id=" + id;
+}
+
+function borrarCookie(nombre) {
+  document.cookie =
+    nombre + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
 }

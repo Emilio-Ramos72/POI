@@ -24,6 +24,19 @@ $_usuario = new Usuario;
         echo $jala;
     }
 
+    //Actividad
+    if($datos["opc"]==6){
+        header('Content-Type: application/json');
+        $jala = $_usuario->setUserActive();
+        echo $jala;
+    }
+
+    if($datos["opc"]==7){
+        header('Content-Type: application/json');
+        $jala = $_usuario->setUserInactive();
+        echo $jala;
+    }
+
 
     //header('Content-Type: application/json');//le dices que devuelve un json
     

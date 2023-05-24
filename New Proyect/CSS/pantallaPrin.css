@@ -104,3 +104,36 @@ body {
   flex: 1;
 }
 */
+
+.tarea {
+  color: azure;
+}
+
+.comp {
+  color: azure;
+  font-size: 12px;
+  background-color: rgb(51, 43, 71);
+  border: 1px solid rgb(51, 43, 71);
+  border-radius: 25px;
+
+  margin-left: 5px;
+  padding: 5px;
+}
+
+.comp-btn {
+  color: azure;
+  font-size: 30px;
+  background-color: rgb(51, 43, 71);
+  border: 1px solid rgb(51, 43, 71);
+  border-radius: 25px;
+
+  margin-left: 5px;
+  padding: 5px;
+}
+
+.controls {
+  width: 100%;
+  background-color: rgb(238, 235, 245);
+  padding: 1%;
+  border-radius: 6px;
+}

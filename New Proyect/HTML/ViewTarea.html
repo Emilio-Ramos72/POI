@@ -11,18 +11,18 @@
       integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"
       crossorigin="anonymous"
     />
+    <!-- CAMBIAR EL CSS -->
     <link rel="stylesheet" href="../CSS/pantallaPrin.css" />
     <link rel="stylesheet" href="../CSS/navBar.css" />
-    <link rel="stylesheet" href="../CSS/TeamCreation.css" />
     <script type="text/javascript" src="../JAVA/jquery-3.5.1.min.js"></script>
     <script type="text/javascript" src="../JAVA/llevameA.js"></script>
-
     <script type="text/javascript" src="../JAVA/ocultarElem.js"></script>
-    <script type="text/javascript" src="../JAVA/CreateTeams.js"></script>
-    <script type="text/javascript" src="../JAVA/ShowTeams.js"></script>
-
+    <script type="text/javascript" src="../JAVA/ShowTarea.js"></script>
     <script type="text/javascript" src="../JAVA/onLeave.js"></script>
 
+    <!--
+      <script type="text/javascript" src="../JAVA/ocultarElem.js"></script>
+    -->
     <link
       href="https://fonts.googleapis.com/css2?family=Nunito:wght@300&family=Raleway:wght@400;411;437&display=swap"
       rel="stylesheet"
@@ -80,66 +80,18 @@
       </div>
     </nav>
     <div id="contenidoCentral">
-      <div id="contCen">
-        <div class="contenedorEquipos">
-          <h1 class="Catcur" style="display: inline-block">Equipos</h1>
+      <div id="contCen" class="contenedorFlex">
+        <!-- Carga de documentos y completado de la tarea -->
+        <div id="Tarea"></div>
+
+        <div class="Equipos contenedorFlex columnFlex">
+          <button class="comp-btn">Subir tarea</button>
           <input
-            type="button"
-            id="btncreate"
-            class="btncreate"
-            value=" + "
-            onclick="HideUnhideSel()"
+            class="controls"
+            type="file"
+            id="image"
+            placeholder="Seleccione una imagen"
           />
-          <div id="CreateTeams" style="display: none" class="createEquipo">
-            <h3>Nombre del equipo</h3>
-            <input
-              type="text"
-              id="nameequipo"
-              class="controls"
-              placeholder=" Favor de dar un nombre al equipo"
-            />
-            <h3>Imagen del Equipo</h3>
-            <input
-              class="controls"
-              class="form-error"
-              type="file"
-              name="image"
-              id="teamimage"
-              placeholder="Seleccione una imagen"
-              required
-            />
-            <h3>Seleccionar Integrantes</h3>
-            <!-- BUSQUEDA INTEGRANTES -->
-            <input
-              class="controls"
-              class="form-error"
-              type="text"
-              name="membername"
-              id="membername"
-              placeholder="Busque algun integrante"
-              onkeyup="TeamfiltrerUsers()"
-              required
-            />
-            <div id="findusers">Test</div>
-
-            <!-- DROP DE LOS ACTIVOS-->
-            <div class="controls dropTeamates">
-              <span id="lastMember">Miembros</span>
-              <div id="dropcontent" class="dropContent"></div>
-            </div>
-            <br />
-            <input
-              type="button"
-              id="CreateTeambtn"
-              class="submit"
-              value="Crear Equipo"
-              onclick="CreateTeam()"
-            />
-          </div>
-
-          <div id="ShowTeams" class="contenedorFlex">
-            <!-- Contenedor -->
-          </div>
         </div>
       </div>
     </div>

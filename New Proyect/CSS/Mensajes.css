@@ -22,7 +22,10 @@ body {
 }
 
 #mensajesActuales {
-  margin-top: 332px;
+  min-height: 500px;
+  max-height: 525px;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 #mensajesGen {

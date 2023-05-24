@@ -4,6 +4,24 @@ $(document).ready(function () {
   $("body").on("click", "#btnBus", function () {
     buscar();
   });
+
+  let opc = 6;
+  let Body = { opc };
+  let jsonBody = JSON.stringify(Body);
+
+  fetch("../php/usuario.php", {
+    method: "POST",
+    header: { "Content-Type": "application/json" },
+    body: jsonBody,
+  })
+    .then((response) => {
+      return response.json();
+    })
+    .then((data) => {
+      var Jason = data;
+      console.log(Jason);
+    });
+
   function ocultarElNav() {
     var opc = 3;
     let Body = { opc };
@@ -28,6 +46,8 @@ $(document).ready(function () {
         document.getElementById("imgAvatarUsuario").src =
           "../php/profilePicture.php";
       });
+
+    //hacer que aqui se haga activo el usuario en la app
   }
 
   function buscar() {

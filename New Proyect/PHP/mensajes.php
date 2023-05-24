@@ -17,6 +17,11 @@ $_mensajes = new Mensajes;
         $jala = $_mensajes->chatsDisponibles($postbody);
         echo $jala;
     }
+
+    if($datos["opc"]==4){
+        $jala = $_mensajes->traerChats();
+        echo $jala;
+    }
     //header('Content-Type: application/json');//le dices que devuelve un json
 
     //echo $jala;

@@ -13,10 +13,15 @@
     />
     <link rel="stylesheet" href="../CSS/ChatEquipo.css" />
     <link rel="stylesheet" href="../CSS/navBar.css" />
+    <link rel="stylesheet" href="../CSS/TeamCreation.css" />
+
     <script type="text/javascript" src="../JAVA/jquery-3.5.1.min.js"></script>
     <script type="text/javascript" src="../JAVA/llevameA.js"></script>
     <script type="text/javascript" src="../JAVA/ocultarElem.js"></script>
     <script type="text/javascript" src="../JAVA/ChatEquipo.js"></script>
+    <script type="text/javascript" src="../JAVA/Tarea.js"></script>
+    <script type="text/javascript" src="../JAVA/onLeave.js"></script>
+
 
     <!--
       <script type="text/javascript" src="../JAVA/ocultarElem.js"></script>
@@ -92,9 +97,41 @@
           <p id="nombreEquipo">Equipo</p>
           <div id="botonesEquipo">
             <button>Publicaciones</button>
-            <button>Tareas</button>
+            <button onclick="llevameATareas()">Tareas</button>
+            <button id="CrearTarea" style="display: none;" onclick="showCreateTarea()">Crear Tareas</button>
           </div>
         </div>
+        <!-- Crear Tareas-->
+        <div id="CreateTarea" style="display: none" class="createEquipo">
+          <h3>Nombre de la Tarea</h3>
+          <input
+            type="text"
+            id="nametarea"
+            class="controls"
+            placeholder=" Favor de dar un nombre a la tarea"
+          />
+          <h3>Instrucciones para la Tarea</h3>
+          <input
+            type="text"
+            id="desctarea"
+            class="controls"
+            placeholder=" Favor de dar las instrucciones a la tarea"
+          />
+          <br />
+            <input
+              type="button"
+              id="CreateTeambtn"
+              class="submit"
+              value="Crear Tarea"
+              onclick="createTarea()"
+            />
+
+        </div>
+
+
+
+
+
         <!-- Publicaciones -->
         <div  class="contenedorFlex columnFlex">
           <div id="publications">

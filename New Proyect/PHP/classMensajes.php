@@ -45,6 +45,22 @@
                 }
         }
 
+        public function traerChats(){
+            $id= $_SESSION["id"];
+
+            $query2 = "CALL sp_MENSAJE_CHATS($id);";
+
+            $mensajes = parent::obtenerDatos($query2);
+                
+                if(isset($mensajes[0]["RECEPTOR_ID"])){           
+                   return json_encode($mensajes);
+                }else{
+                    $success="NoHayChats";
+                    return $success;
+                }
+
+        }
+
 
     }
 ?>

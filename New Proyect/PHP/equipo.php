@@ -36,5 +36,10 @@ if($_POST['opc']==5){
     $jala = $_equipo->MemberofTeam();
     echo $jala;
 }
+if($_POST['opc']==6){
+    $id = $_SESSION['id'];
 
+    echo $id;
+}
+ 
 

@@ -1,5 +1,50 @@
 var hablando_con_trampa = { id: 0, nombre: null };
 
+$(document).ready(function () {
+  traerChats();
+});
+
+function traerChats() {
+  var filtro = document.getElementById("membername").value;
+  var secc = document.getElementById("dropcontent");
+  secc.innerHTML = "";
+
+  var opc = 4;
+
+  let Body = { filtro, opc };
+  let jsonBody = JSON.stringify(Body);
+
+  fetch("../php/mensajes.php", {
+    method: "POST",
+    header: { "Content-Type": "application/json" },
+    body: jsonBody,
+  })
+    .then((response) => {
+      return response.json();
+    })
+    .then((data) => {
+      var Jason = data;
+      if (Jason != "NoHayPerfiles") {
+        console.log(Jason);
+
+        for (var i in Jason) {
+          //console.log(Jason[i]["NOMBRE"]);
+
+          secc.innerHTML +=
+            "<button class='personas' id='" +
+            Jason[i]["RECEPTOR_ID"] +
+            "' onclick='chatSelectUser(" +
+            Jason[i]["RECEPTOR_ID"] +
+            ")' >" +
+            Jason[i]["NOMBRE_RECEPTOR"] +
+            "</button>";
+        }
+      } else alert(Jason.result);
+      //"status" => "ok",
+      //"result" => array()
+    });
+}
+
 function ChatfiltrerUsers() {
   var filtro = document.getElementById("membername").value;
   var secc = document.getElementById("dropcontent");
@@ -84,6 +129,21 @@ function chatSelectUser(id) {
       //console.log(Jason);
       if (Jason != "NoHayMensajes") {
         alert("Podemos acceder a los mensajes del usuario");
+        console.log(Jason[0]["ACTIVO"]);
+
+        if (Jason[0]["ACTIVO"] == 0) {
+          //inactivo
+          hablando.innerHTML =
+            "<p>" +
+            hablando_con_trampa.nombre +
+            "</p><p>Ultima Accion: " +
+            Jason[0]["LASTTIME"] +
+            "</p>";
+        } else {
+          //Activo
+          hablando.innerHTML =
+            "<p>" + hablando_con_trampa.nombre + "</p><p>Activo</p>";
+        }
         //console.log(Jason);
         //console.log(id);
         for (var i in Jason) {
