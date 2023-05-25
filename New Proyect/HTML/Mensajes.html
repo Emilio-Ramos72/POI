@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="../CSS/Mensajes.css" />
     <link rel="stylesheet" href="../CSS/navBar.css" />
     <link rel="stylesheet" href="../CSS/TeamCreation.css" />
+    <link rel="stylesheet" href="../CSS/slider.css" />
 
     <script type="text/javascript" src="../JAVA/jquery-3.5.1.min.js"></script>
     <script type="text/javascript" src="../JAVA/llevameA.js"></script>
@@ -98,7 +99,14 @@
           </div>
         </div>
         <div id="chatAct">
-          <div id="habloCon"></div>
+          <div>
+            <div id="habloCon"></div>
+            <div class="switch">
+              <input id="checkbox1" class="look" type="checkbox">
+              <label for="checkbox1"></label>
+            </div>
+          </div>
+          
           <div id="mensajesActuales"></div>
           <div id="barraAbajo">
             <input
@@ -107,6 +115,7 @@
               placeholder="Escribe algo..."
             />
             <input type="button" id="btnEnviar" onclick="sendMessage()" />
+           
             <button id="btnLocalización"  onclick="getLocation()">Compartir ubicación</button>
           </div>
         </div>

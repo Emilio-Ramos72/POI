@@ -6,10 +6,12 @@
             $datos = json_decode($json,true);
             //son los datos del json
             $mensaje = $datos["mensaje"];
+            $encriptacion = $datos["valorSlider"];
             $receptor = $datos["id"];
             $emisor = $_SESSION["id"];
+
             //estudiante, curso y mensaje
-            $query = "Call sp_MENSAJE_C('$mensaje',$receptor,$emisor);";
+            $query = "Call sp_MENSAJE_C('$mensaje',$encriptacion ,$receptor,$emisor);";
             $verificacion = parent::rowsAfectados($query);
             if($verificacion == 1){
                 $query2 = "CALL sp_MENSAJE_SHOW($emisor,$receptor);";
@@ -40,7 +42,6 @@
             if(isset($mensajes[0]["RECEPTOR_ID"])){           
                return json_encode($mensajes);
             }else{
-               
                 $success = [
                 "status" => "NoHayMensajes"
                 ];     

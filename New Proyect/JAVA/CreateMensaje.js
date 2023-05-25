@@ -253,9 +253,10 @@ function chatSelectUser(id) {
         //console.log(Jason);
         //console.log(id);
         for (let i in Jason) {
-          console.log("id del otro wey: ",Jason[i]["RECEPTOR_ID"]);
-          console.log("mensaje del otro wey: ",Jason[i]["MENSAJE"]);
-          console.log("hora del otro wey: ",Jason[i]["HORA"]);
+          if(Jason[i]["ENCRIPTACION"]==1){
+            //desencripta el mensaje
+            Jason[i]["MENSAJE"]=desencriptar(Jason[i]["MENSAJE"],5);
+          }
           if (Jason[i]["RECEPTOR_ID"] == id) {
             secc.innerHTML +=
               "<div class='conMenP2'><div id='mensajesP1'>" +
@@ -290,6 +291,15 @@ function chatSelectUser(id) {
 function sendMessage() {
   let mensaje = document.getElementById("barraMensaje").value;
   let secc = document.getElementById("mensajesActuales");
+
+  let statusSlider = document.getElementById('checkbox1').checked;
+  let valorSlider=0;
+  if(statusSlider){
+    mensaje=encriptar(mensaje,5);
+    valorSlider=1;
+  }
+
+
   secc.innerHTML = "";
   let barra = document.getElementById("barraMensaje");
   barra.value = null;
@@ -298,7 +308,7 @@ function sendMessage() {
   opc = 1;
   let id = hablando_con_trampa.id;
 
-  Body = { mensaje, id, opc };
+  Body = { mensaje, id,valorSlider, opc };
   jsonBody = JSON.stringify(Body);
 
   //console.log(Body);
@@ -320,8 +330,13 @@ function sendMessage() {
         //CUANDO ENVIE EL MENSAJE
         for (let i in Jason) {
           //console.log(Jason[i]["RECEPTOR_ID"]);
-
+          if(Jason[i]["ENCRIPTACION"]==1){
+            //desencripta el mensaje
+            Jason[i]["MENSAJE"]=desencriptar(Jason[i]["MENSAJE"],5);
+          }
           if (Jason[i]["RECEPTOR_ID"] == id) {
+            
+
             secc.innerHTML +=
               "<div class='conMenP2'><div id='mensajesP1'>" +
               Jason[i]["MENSAJE"] +
@@ -419,4 +434,37 @@ function sendLocalizacion(latitud, longitud) {
     });
 
 }
+
+function encriptar(texto, cuanto) {
+ 
+    // Algoritmo de encriptación
+    var resultado = "";
+    for (var i = 0; i < texto.length; i++) {
+      resultado += String.fromCharCode(texto.charCodeAt(i) + cuanto);
+    }
+    return resultado;
+ 
+}
+
+function desencriptar(textoEncriptado,cuanto) {
+  var resultado = "";
+  for (var i = 0; i < textoEncriptado.length; i++) {
+    resultado += String.fromCharCode(textoEncriptado.charCodeAt(i) - cuanto);
+  }
+  return resultado;
+}
+
+function textoEncriptado(){
+  let texto=encriptar("encripta esto",5);
+  console.log("texto encriptado:",texto);
+  let nuevotexto=desencriptar(texto,5);
+  console.log("texto desencriptado:",nuevotexto);
+
+  console.log("el slider esta: ",isSliderOn());
+
+
+
+}
+
+
 
