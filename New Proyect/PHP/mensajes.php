@@ -22,6 +22,18 @@ $_mensajes = new Mensajes;
         $jala = $_mensajes->traerChats();
         echo $jala;
     }
+
+    if($datos["opc"]==5){
+        //pendientes
+        $jala = $_mensajes->pendingmsg($postbody);
+        echo $jala;
+    }
+
+    if($datos["opc"]==6){
+        //vistos
+        $jala = $_mensajes->viewmsg($postbody);
+        echo $jala;
+    }
     //header('Content-Type: application/json');//le dices que devuelve un json
 
     //echo $jala;

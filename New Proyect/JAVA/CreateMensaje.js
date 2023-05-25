@@ -1,36 +1,97 @@
-var hablando_con_trampa = { id: 0, nombre: null };
+let hablando_con_trampa = { id: 0, nombre: null };
+let Yo_con_trampa = "";
 
 $(document).ready(function () {
+  Yo_con_trampa = getQueryVariable("id");
+
+  console.log("YO trampa: ", Yo_con_trampa);
+
   traerChats();
+
+  function getQueryVariable(variable) {
+    var query = window.location.search.substring(1);
+    var vars = query.split("&");
+
+    for (var i = 0; i < vars.length; i++) {
+      var pair = vars[i].split("=");
+
+      if (pair[0] == variable) {
+        return pair[1];
+      }
+    }
+    return false;
+  }
 });
 
 function traerChats() {
-  var filtro = document.getElementById("membername").value;
-  var secc = document.getElementById("dropcontent");
+  let filtro = document.getElementById("membername").value;
+  let secc = document.getElementById("dropcontent");
   secc.innerHTML = "";
-
-  var opc = 4;
-
-  let Body = { filtro, opc };
-  let jsonBody = JSON.stringify(Body);
 
   fetch("../php/mensajes.php", {
     method: "POST",
     header: { "Content-Type": "application/json" },
-    body: jsonBody,
+    //Traer los chats disponibles
+    body: JSON.stringify({ filtro, opc: 4 }),
   })
     .then((response) => {
       return response.json();
     })
     .then((data) => {
-      var Jason = data;
+      let Jason = data;
       if (Jason != "NoHayPerfiles") {
         console.log(Jason);
 
-        for (var i in Jason) {
-          //console.log(Jason[i]["NOMBRE"]);
+        for (let i in Jason) {
+          let pending;
 
-          secc.innerHTML +=
+          fetch("../php/mensajes.php", {
+            method: "POST",
+            header: { "Content-Type": "application/json" },
+            //traer el numero de mensajes pendientes
+            body: JSON.stringify({ receptor: Jason[i]["RECEPTOR_ID"], opc: 5 }),
+          })
+            .then((response) => {
+              return response.json();
+            })
+            .then((data2) => {
+              let Jason2 = data2;
+              //traer la data de pending
+              console.log(Jason2);
+              console.log(Jason[i]["NOMBRE_RECEPTOR"]);
+              console.log(Jason[i]["NOMBRE_EMISOR"]);
+
+              if (Jason2["status"] == "NoHayPendientes") {
+                pending = 0;
+              } else {
+                pending = Jason2[0]["PENDING"];
+              }
+              //pending = Jason2[0]["PENDING"];
+
+              if (Yo_con_trampa == Jason[i]["RECEPTOR_ID"]) {
+                secc.innerHTML += `
+                <button class='personas' id='${
+                  Jason[i]["RECEPTOR_ID"]
+                }' onclick='chatSelectUser(${Jason[i]["RECEPTOR_ID"]})'>${
+                  Jason[i]["NOMBRE_RECEPTOR"]
+                }${
+                  pending > 0 ? `<span class='pending'>${pending}</span>` : ""
+                }</button>
+              `;
+              } else if (Yo_con_trampa == Jason[i]["EMISOR_ID"]) {
+                secc.innerHTML += `
+                <button class='personas' id='${
+                  Jason[i]["EMISOR_ID"]
+                }' onclick='chatSelectUser(${Jason[i]["EMISOR_ID"]})'>${
+                  Jason[i]["NOMBRE_EMISOR"]
+                }${
+                  pending > 0 ? `<span class='pending'>${pending}</span>` : ""
+                }</button>
+              `;
+              }
+            });
+          /*
+secc.innerHTML +=
             "<button class='personas' id='" +
             Jason[i]["RECEPTOR_ID"] +
             "' onclick='chatSelectUser(" +
@@ -38,6 +99,7 @@ function traerChats() {
             ")' >" +
             Jason[i]["NOMBRE_RECEPTOR"] +
             "</button>";
+*/
         }
       } else alert(Jason.result);
       //"status" => "ok",
@@ -46,12 +108,12 @@ function traerChats() {
 }
 
 function ChatfiltrerUsers() {
-  var filtro = document.getElementById("membername").value;
-  var secc = document.getElementById("dropcontent");
+  let filtro = document.getElementById("membername").value;
+  let secc = document.getElementById("dropcontent");
   secc.innerHTML = "";
 
   if (filtro != null) {
-    var opc = 5;
+    let opc = 5;
 
     let Body = { filtro, opc };
     let jsonBody = JSON.stringify(Body);
@@ -65,12 +127,12 @@ function ChatfiltrerUsers() {
         return response.json();
       })
       .then((data) => {
-        var Jason = data;
+        let Jason = data;
         if (Jason != "NoHayPerfiles") {
           alert("Registro exitoso");
           //console.log(Jason);
 
-          for (var i in Jason) {
+          for (let i in Jason) {
             //console.log(Jason[i]["NOMBRE"]);
 
             secc.innerHTML +=
@@ -90,13 +152,27 @@ function ChatfiltrerUsers() {
 }
 
 function chatSelectUser(id) {
-  //var hablo = document.getElementById("habloCon");
-  var secc = document.getElementById("mensajesActuales");
+  console.log("Selected id", id);
+  fetch("../php/mensajes.php", {
+    method: "POST",
+    header: { "Content-Type": "application/json" },
+    //hacer vistos los mensajes
+    body: JSON.stringify({ id: id, opc: 6 }),
+  })
+    .then((response) => {
+      return response.text();
+    })
+    .then((data) => {
+      console.log(data);
+    });
+
+  //let hablo = document.getElementById("habloCon");
+  let secc = document.getElementById("mensajesActuales");
   secc.innerHTML = "";
   //console.log("Me han seleccionado en chat", id);
-  var persona = document.getElementById(id);
-  var hablando = document.getElementById("habloCon");
-  var barra = document.getElementById("barraMensaje");
+  let persona = document.getElementById(id);
+  let hablando = document.getElementById("habloCon");
+  let barra = document.getElementById("barraMensaje");
   barra.value = null;
 
   hablando.innerHTML = "";
@@ -111,7 +187,7 @@ function chatSelectUser(id) {
   //--------------
 
   opc = 2;
-  var dataid = id;
+  let dataid = id;
 
   Body = { dataid, opc };
   jsonBody = JSON.stringify(Body);
@@ -125,7 +201,7 @@ function chatSelectUser(id) {
       return response.json();
     })
     .then((data) => {
-      var Jason = data;
+      let Jason = data;
       //console.log(Jason);
       if (Jason != "NoHayMensajes") {
         alert("Podemos acceder a los mensajes del usuario");
@@ -146,7 +222,7 @@ function chatSelectUser(id) {
         }
         //console.log(Jason);
         //console.log(id);
-        for (var i in Jason) {
+        for (let i in Jason) {
           //console.log(Jason[i]["RECEPTOR_ID"]);
 
           if (Jason[i]["RECEPTOR_ID"] == id) {
@@ -176,18 +252,20 @@ function chatSelectUser(id) {
       //"status" => "ok",
       //"result" => array()
     });
+
+  //fetch para hacer vistos los mensajes
 }
 
 function sendMessage() {
-  var mensaje = document.getElementById("barraMensaje").value;
-  var secc = document.getElementById("mensajesActuales");
+  let mensaje = document.getElementById("barraMensaje").value;
+  let secc = document.getElementById("mensajesActuales");
   secc.innerHTML = "";
-  var barra = document.getElementById("barraMensaje");
+  let barra = document.getElementById("barraMensaje");
   barra.value = null;
   //console.log(mensaje, "hablando con el id", hablando_con_trampa);
 
   opc = 1;
-  var id = hablando_con_trampa.id;
+  let id = hablando_con_trampa.id;
 
   Body = { mensaje, id, opc };
   jsonBody = JSON.stringify(Body);
@@ -204,12 +282,12 @@ function sendMessage() {
       return response.json();
     })
     .then((data) => {
-      var Jason = data;
+      let Jason = data;
       console.log(Jason);
       if (Jason != "NoSePudoCrearUnMensaje") {
         alert("Podemos crear un nuevo mensaje");
         //CUANDO ENVIE EL MENSAJE
-        for (var i in Jason) {
+        for (let i in Jason) {
           //console.log(Jason[i]["RECEPTOR_ID"]);
 
           if (Jason[i]["RECEPTOR_ID"] == id) {

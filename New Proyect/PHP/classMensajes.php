@@ -61,6 +61,54 @@
 
         }
 
+        public function pendingmsg($json){
+            header('Content-Type: application/json');
+
+            $datos = json_decode($json,true);
+
+            $id= $datos["receptor"];
+
+            $EMID = $_SESSION["id"];
+
+             $query2 = "CALL sp_MENSAJE_PENDING($id, $EMID);";
+
+            $mensajes = parent::obtenerDatos($query2);
+                
+                if(isset($mensajes[0]["PENDING"])){           
+                   return json_encode($mensajes);
+                }else{
+$success = [
+"status" => "NoHayPendientes"
+];     
+                    return json_encode($success);
+                }
+        }
+
+        public function viewmsg($json){
+            header('Content-Type: application/json');
+
+            $datos = json_decode($json,true);
+
+
+            $OtherId = $datos["id"];
+            $SesId = $_SESSION["id"];
+
+            $query = "Call sp_MENSAJE_VIEW($SesId, $OtherId);";
+
+            $verificacion = parent::rowsAfectados($query);
+            
+            if($verificacion == 1){
+                $success="success";
+                return $success;
+               
+            }else{
+                $success="fail";
+
+                return  $success;
+
+            
+            }
+        }
 
     }
 ?>

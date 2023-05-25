@@ -38,9 +38,7 @@ function llevameANewCat() {
 function llevameAEquipos() {
   window.location.href = "PantallaPrinc.html";
 }
-function llevameAMensajes() {
-  window.location.href = "Mensajes.html";
-}
+
 function llevameATareas() {
   window.location.href = "Tareas.html";
 }

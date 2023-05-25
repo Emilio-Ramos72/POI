@@ -1,8 +1,15 @@
+let Yo = "";
+
 $(document).ready(function () {
   ocultarElNav();
   //buscar();
   $("body").on("click", "#btnBus", function () {
     buscar();
+  });
+
+  $("body").on("click", "#chatbtn", function () {
+    console.log("Yo antes de salir", Yo);
+    llevameAMensajes(Yo);
   });
 
   let opc = 6;
@@ -19,7 +26,7 @@ $(document).ready(function () {
     })
     .then((data) => {
       var Jason = data;
-      console.log(Jason);
+      //console.log(Jason);
     });
 
   function ocultarElNav() {
@@ -33,12 +40,16 @@ $(document).ready(function () {
       body: jsonBody,
     })
       .then((response) => {
-        return response.text();
+        return response.json();
       })
       .then((data) => {
         var Jason = data;
-        var obj = JSON.parse(Jason);
+        //var obj = JSON.parse(Jason);
+
         console.log(data);
+
+        Yo = data["idUsuario"];
+        //console.log("Yo :", Yo);
 
         //document.getElementById("cerrarSes").style.display = 'inline';
         //document.getElementById("navVentas").style.display = 'none';
@@ -105,3 +116,7 @@ $(document).ready(function () {
       });
   }
 });
+
+function llevameAMensajes(id) {
+  window.location.href = "Mensajes.html?id=" + id;
+}
