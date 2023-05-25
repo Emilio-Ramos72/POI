@@ -14,6 +14,7 @@
             
             $query = "Call sp_USUARIO_C('$nombre','$password','$foto',
             '$nickname','$correo');";
+            
             $verificacion = parent::rowsAfectados($query);
             
             if($verificacion == 1){
@@ -41,12 +42,47 @@
                
                 $success="sesionEncontrada";
                 return $success;
+
+                //poner al usuario como activo
                 
             }
             else{
                 $success="sesionNoExiste";
                 return $success;
                
+            }
+        }
+
+        public function setUserActive(){
+            $id = $_SESSION["id"];
+
+            $query = "Call sp_USUARIO_ACTIVO($id);";
+            $verificacion = parent::rowsAfectados($query);
+            
+            if($verificacion == 1){
+                $success="Usuario Activo";
+                return json_encode($verificacion);
+               
+            }else{
+                $success="fail";
+                return  parent::Error();
+            }
+
+        }
+
+        public function setUserInactive(){
+            $id = $_SESSION["id"];
+
+            $query = "Call sp_USUARIO_INACTIVO($id);";
+            $verificacion = parent::rowsAfectados($query);
+            
+            if($verificacion == 1){
+                $success="Usuario Inactivo";
+                return $success;
+               
+            }else{
+                $success="fail";
+                return  parent::Error();
             }
         }
 
@@ -72,6 +108,27 @@
             }else{
                 $success="fail";
                 return $success;
+            }
+        }
+
+        public function getFilterUser($json){
+            header('Content-Type: application/json');
+
+            $datos = json_decode($json,true);
+            //son los datos del json
+            $criteria = $datos["filtro"]; /*filter value*/
+            $id = $_SESSION["id"];
+
+            $query = "call sp_FilterUsuario('$criteria', $id);";
+            
+            $Perfiles = parent::obtenerDatos($query);
+            if(isset($Perfiles[0]["NOMBRE"])){
+                return json_encode($Perfiles);
+            }
+            else{
+                $success="NoHayPerfiles";
+                return $success;
+               
             }
         }
 

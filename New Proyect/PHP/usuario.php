@@ -18,6 +18,26 @@ $_usuario = new Usuario;
         $jala = $_usuario->modificarUsuario($postbody);
         echo $jala;
     }
+    if($datos["opc"]==5){
+        header('Content-Type: application/json');
+        $jala = $_usuario->getFilterUser($postbody);
+        echo $jala;
+    }
+
+    //Actividad
+    if($datos["opc"]==6){
+        header('Content-Type: application/json');
+        $jala = $_usuario->setUserActive();
+        echo $jala;
+    }
+
+    if($datos["opc"]==7){
+        header('Content-Type: application/json');
+        $jala = $_usuario->setUserInactive();
+        echo $jala;
+    }
+
+
     //header('Content-Type: application/json');//le dices que devuelve un json
     
     //echo $jala;

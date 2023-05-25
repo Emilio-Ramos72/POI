@@ -13,8 +13,15 @@
     />
     <link rel="stylesheet" href="../CSS/ChatEquipo.css" />
     <link rel="stylesheet" href="../CSS/navBar.css" />
+    <link rel="stylesheet" href="../CSS/TeamCreation.css" />
+
     <script type="text/javascript" src="../JAVA/jquery-3.5.1.min.js"></script>
     <script type="text/javascript" src="../JAVA/llevameA.js"></script>
+    <script type="text/javascript" src="../JAVA/ocultarElem.js"></script>
+    <script type="text/javascript" src="../JAVA/ChatEquipo.js"></script>
+    <script type="text/javascript" src="../JAVA/Tarea.js"></script>
+    <script type="text/javascript" src="../JAVA/onLeave.js"></script>
+
 
     <!--
       <script type="text/javascript" src="../JAVA/ocultarElem.js"></script>
@@ -27,54 +34,54 @@
 
   <body>
     <nav
-      class="navbar navbar-expand-lg"
-      style="background-color: rgb(73, 62, 102)"
-    >
-      <a class="navbar-brand" href="../HTML/index.html">
-        <img
-          src="../ImagenesaCambiar/referenciaCampoFloresProyATAH.png"
-          width="30"
-          height="30"
-          class="d-inline-block align-top"
-          alt=""
-        />
-        Crashea
-      </a>
+    class="navbar navbar-expand-lg"
+    style="background-color: rgb(73, 62, 102)"
+  >
+    <a class="navbar-brand" href="../HTML/index.html">
+      <img
+        src="../ImagenesaCambiar/referenciaCampoFloresProyATAH.png"
+        width="30"
+        height="30"
+        class="d-inline-block align-top"
+        alt=""
+      />
+      Crashea
+    </a>
 
-      <div id="elementosNav">
-        <div id="navButtonsCont">
-          <button class="navButtons" onclick="llevameAEquipos()">
-            Equipos
-          </button>
-          <button class="navButtons" onclick="llevameAMensajes()">Chats</button>
-          <button class="navButtons" onclick="llevameATareas()">Tareas</button>
-        </div>
-        <!--dropDownBar-->
-        <div class="dropdown">
-          <img
-            id="imgAvatarUsuario"
-            src="../ImagenesaCambiar/EthanYax.png"
-            alt="avatarUs"
-            width="50"
-            height="50"
-          />
-          <class class="dropdown-content">
-            <a href="../HTML/perfil.html">Perfil</a>
-            <a href="../HTML/misCursos.html">Mis cursos</a>
-            <a href="../HTML/mensajes.html">Mensajes</a>
-            <hr />
-            <a id="navVentas" href="../HTML/Ventas.html">Ventas</a>
-            <a id="navHistorial" href="../HTML/historialAl.html">Historial</a>
-            <a
-              id="cerrarSes"
-              href="../HTML/Index.html"
-              onclick="llevameAInSes()"
-              >Cerrar sesión</a
-            >
-          </class>
-        </div>
+    <div id="elementosNav">
+      <div id="navButtonsCont">
+        <button class="navButtons" onclick="llevameAEquipos()">
+          Equipos
+        </button>
+        <button id="chatbtn" class="navButtons">Chats</button>
+        <button class="navButtons" onclick="llevameATareas()">Tareas</button>
       </div>
-    </nav>
+      <!--dropDownBar-->
+      <div class="dropdown">
+        <img
+          id="imgAvatarUsuario"
+          src="../ImagenesaCambiar/EthanYax.png"
+          alt="avatarUs"
+          width="50"
+          height="50"
+        />
+        <class class="dropdown-content">
+          <a href="../HTML/perfil.html">Perfil</a>
+          <a href="../HTML/misCursos.html">Mis cursos</a>
+          <a href="../HTML/mensajes.html">Mensajes</a>
+          <hr />
+          <a id="navVentas" href="../HTML/Ventas.html">Ventas</a>
+          <a id="navHistorial" href="../HTML/historialAl.html">Historial</a>
+          <a
+            id="cerrarSes"
+            href="../HTML/Index.html"
+            onclick="llevameAInSes()"
+            >Cerrar sesión</a
+          >
+        </class>
+      </div>
+    </div>
+  </nav>
 
     <!-- Grid -->
     <div id="contCen">
@@ -90,12 +97,46 @@
           <p id="nombreEquipo">Equipo</p>
           <div id="botonesEquipo">
             <button>Publicaciones</button>
-            <button>Tareas</button>
+            <button onclick="llevameATareas()">Tareas</button>
+            <button id="CrearTarea" style="display: none;" onclick="showCreateTarea()">Crear Tareas</button>
           </div>
         </div>
+        <!-- Crear Tareas-->
+        <div id="CreateTarea" style="display: none" class="createEquipo">
+          <h3>Nombre de la Tarea</h3>
+          <input
+            type="text"
+            id="nametarea"
+            class="controls"
+            placeholder=" Favor de dar un nombre a la tarea"
+          />
+          <h3>Instrucciones para la Tarea</h3>
+          <input
+            type="text"
+            id="desctarea"
+            class="controls"
+            placeholder=" Favor de dar las instrucciones a la tarea"
+          />
+          <br />
+            <input
+              type="button"
+              id="CreateTeambtn"
+              class="submit"
+              value="Crear Tarea"
+              onclick="createTarea()"
+            />
+
+        </div>
+
+
+
+
+
         <!-- Publicaciones -->
-        <div class="contenedorFlex columnFlex">
-          <!-- Publicacion -->
+        <div  class="contenedorFlex columnFlex">
+          <div id="publications">
+
+<!-- Publicacion -->
           <div id="publication">
             <div class="box">
               <div id="userInfo" class="contenedorFlex">
@@ -131,60 +172,8 @@
             <div id="response" class="box"><p>response</p></div>
           </div>
 
-          <!-- Publicacion -->
-          <div id="publication">
-            <div class="box">
-              <div id="userInfo" class="contenedorFlex">
-                <img
-                  id="imgUsuario"
-                  src="../ImagenesaCambiar/referenciaCampoFloresProyATAH.png"
-                  alt=""
-                />
-                <h3>Nombre</h3>
-                <p>Fecha</p>
-              </div>
-              <hr />
-              <div id="publicationInfo">Informacion</div>
-            </div>
-            <div id="response" class="box"><p>response</p></div>
           </div>
-
-          <!-- Publicacion -->
-          <div id="publication">
-            <div class="box">
-              <div id="userInfo" class="contenedorFlex">
-                <img
-                  id="imgUsuario"
-                  src="../ImagenesaCambiar/referenciaCampoFloresProyATAH.png"
-                  alt=""
-                />
-                <h3>Nombre</h3>
-                <p>Fecha</p>
-              </div>
-              <hr />
-              <div id="publicationInfo">Informacion</div>
-            </div>
-            <div id="response" class="box"><p>response</p></div>
-          </div>
-
-          <!-- Publicacion -->
-          <div id="publication">
-            <div class="box">
-              <div id="userInfo" class="contenedorFlex">
-                <img
-                  id="imgUsuario"
-                  src="../ImagenesaCambiar/referenciaCampoFloresProyATAH.png"
-                  alt=""
-                />
-                <h3>Nombre</h3>
-                <p>Fecha</p>
-              </div>
-              <hr />
-              <div id="publicationInfo">Informacion</div>
-            </div>
-            <div id="response" class="box"><p>response</p></div>
-          </div>
-        </div>
+          
         <!-- Escribir -->
 
         <div id="barraEscritura" class="contenedorFlex">
@@ -194,7 +183,7 @@
             name="responseInput"
             id="responseInput"
           />
-          <button id="responseSubmit">></button>
+          <button id="responseSubmit" onclick="sendPost()">></button>
         </div>
       </div>
     </div>

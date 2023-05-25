@@ -13,12 +13,16 @@
     />
     <link rel="stylesheet" href="../CSS/pantallaPrin.css" />
     <link rel="stylesheet" href="../CSS/navBar.css" />
+    <link rel="stylesheet" href="../CSS/TeamCreation.css" />
     <script type="text/javascript" src="../JAVA/jquery-3.5.1.min.js"></script>
     <script type="text/javascript" src="../JAVA/llevameA.js"></script>
 
-  
     <script type="text/javascript" src="../JAVA/ocultarElem.js"></script>
-  
+    <script type="text/javascript" src="../JAVA/CreateTeams.js"></script>
+    <script type="text/javascript" src="../JAVA/ShowTeams.js"></script>
+
+    <script type="text/javascript" src="../JAVA/onLeave.js"></script>
+
     <link
       href="https://fonts.googleapis.com/css2?family=Nunito:wght@300&family=Raleway:wght@400;411;437&display=swap"
       rel="stylesheet"
@@ -46,7 +50,7 @@
           <button class="navButtons" onclick="llevameAEquipos()">
             Equipos
           </button>
-          <button class="navButtons" onclick="llevameAMensajes()">Chats</button>
+          <button id="chatbtn" class="navButtons">Chats</button>
           <button class="navButtons" onclick="llevameATareas()">Tareas</button>
         </div>
         <!--dropDownBar-->
@@ -75,96 +79,67 @@
         </div>
       </div>
     </nav>
+
     <div id="contenidoCentral">
       <div id="contCen">
         <div class="contenedorEquipos">
-          <h1 class="Catcur">Equipos</h1>
-          <div class="contenedorFlex">
+          <h1 class="Catcur" style="display: inline-block">Equipos</h1>
+          <input
+            type="button"
+            id="btncreate"
+            class="btncreate"
+            value=" + "
+            onclick="HideUnhideSel()"
+          />
+          <div id="CreateTeams" style="display: none" class="createEquipo">
+            <h3>Nombre del equipo</h3>
+            <input
+              type="text"
+              id="nameequipo"
+              class="controls"
+              placeholder=" Favor de dar un nombre al equipo"
+            />
+            <h3>Imagen del Equipo</h3>
+            <input
+              class="controls"
+              class="form-error"
+              type="file"
+              name="image"
+              id="teamimage"
+              placeholder="Seleccione una imagen"
+              required
+            />
+            <h3>Seleccionar Integrantes</h3>
+            <!-- BUSQUEDA INTEGRANTES -->
+            <input
+              class="controls"
+              class="form-error"
+              type="text"
+              name="membername"
+              id="membername"
+              placeholder="Busque algun integrante"
+              onkeyup="TeamfiltrerUsers()"
+              required
+            />
+            <div id="findusers">Test</div>
+
+            <!-- DROP DE LOS ACTIVOS-->
+            <div class="controls dropTeamates">
+              <span id="lastMember">Miembros</span>
+              <div id="dropcontent" class="dropContent"></div>
+            </div>
+            <br />
+            <input
+              type="button"
+              id="CreateTeambtn"
+              class="submit"
+              value="Crear Equipo"
+              onclick="CreateTeam()"
+            />
+          </div>
+
+          <div id="ShowTeams" class="contenedorFlex">
             <!-- Contenedor -->
-
-            <div class="Equipos">
-              <!-- Contenido -->
-              <img
-                src="../ImagenesaCambiar/EthanYax.png"
-                alt="fotoCurso"
-                height="130"
-                width="215"
-              />
-              <br />
-              <a class="titEquipos" onclick="llevameAverEquipos()"
-                >Nombre del Equipo</a
-              >
-            </div>
-
-            <div class="Equipos">
-              <!-- Contenido -->
-              <img
-                src="../ImagenesaCambiar/EthanYax.png"
-                alt="fotoCurso"
-                height="130"
-                width="215"
-              />
-              <br />
-              <a class="titEquipos" onclick="llevameAverEquipos()"
-                >Nombre del Equipo</a
-              >
-            </div>
-
-            <div class="Equipos">
-              <!-- Contenido -->
-              <img
-                src="../ImagenesaCambiar/EthanYax.png"
-                alt="fotoCurso"
-                height="130"
-                width="215"
-              />
-              <br />
-              <a class="titEquipos" onclick="llevameAverEquipos()"
-                >Nombre del Equipo</a
-              >
-            </div>
-
-            <div class="Equipos">
-              <!-- Contenido -->
-              <img
-                src="../ImagenesaCambiar/EthanYax.png"
-                alt="fotoCurso"
-                height="130"
-                width="215"
-              />
-              <br />
-              <a class="titEquipos" onclick="llevameAverEquipos()"
-                >Nombre del Equipo</a
-              >
-            </div>
-
-            <div class="Equipos">
-              <!-- Contenido -->
-              <img
-                src="../ImagenesaCambiar/EthanYax.png"
-                alt="fotoCurso"
-                height="130"
-                width="215"
-              />
-              <br />
-              <a class="titEquipos" onclick="llevameAverEquipos()"
-                >Nombre del Equipo</a
-              >
-            </div>
-
-            <div class="Equipos">
-              <!-- Contenido -->
-              <img
-                src="../ImagenesaCambiar/EthanYax.png"
-                alt="fotoCurso"
-                height="130"
-                width="215"
-              />
-              <br />
-              <a class="titEquipos" onclick="llevameAverEquipos()"
-                >Nombre del Equipo</a
-              >
-            </div>
           </div>
         </div>
       </div>

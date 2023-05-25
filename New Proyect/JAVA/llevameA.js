@@ -1,5 +1,8 @@
 function llevameAInSes() {
-  window.location.href = "IS.html";
+  window.location.href = "index.html";
+
+  borrarCookie("pass");
+  borrarCookie("mail");
 }
 function llevamePerfil() {
   window.location.href = "perfil.html";
@@ -13,8 +16,9 @@ function llevamePanP() {
 function llevameAmisCursos() {
   window.location.href = "misCursos.html";
 }
-function llevameAverEquipos() {
-  window.location.href = "ChatEquipo.html";
+//Ver Equipo, agregar ID de equipo
+function llevameAverEquipos(id) {
+  window.location.href = "ChatEquipo.html?id=" + id;
 }
 function llevameCrearCurso() {
   window.location.href = "subirCurso.html";
@@ -34,9 +38,15 @@ function llevameANewCat() {
 function llevameAEquipos() {
   window.location.href = "PantallaPrinc.html";
 }
-function llevameAMensajes() {
-  window.location.href = "Mensajes.html";
-}
+
 function llevameATareas() {
   window.location.href = "Tareas.html";
+}
+function llevameATarea(id) {
+  window.location.href = "ViewTarea.html?id=" + id;
+}
+
+function borrarCookie(nombre) {
+  document.cookie =
+    nombre + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
 }

@@ -22,7 +22,10 @@ body {
 }
 
 #mensajesActuales {
-  margin-top: 332px;
+  min-height: 500px;
+  max-height: 525px;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 #mensajesGen {
@@ -107,4 +110,13 @@ body {
 
 .flexItem {
   flex: 1;
+}
+
+.pending {
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  border: 5px;
+  border-radius: 50%;
+  background-color: rgb(114, 217, 108);
 }
