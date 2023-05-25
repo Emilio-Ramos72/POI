@@ -6,10 +6,12 @@
             $datos = json_decode($json,true);
             //son los datos del json
             $mensaje = $datos["mensaje"];
+            $encriptacion = $datos["valorSlider"];
             $receptor = $datos["id"];
             $emisor = $_SESSION["id"];
+
             //estudiante, curso y mensaje
-            $query = "Call sp_MENSAJE_C('$mensaje',$receptor,$emisor);";
+            $query = "Call sp_MENSAJE_C('$mensaje',$encriptacion ,$receptor,$emisor);";
             $verificacion = parent::rowsAfectados($query);
             if($verificacion == 1){
                 $query2 = "CALL sp_MENSAJE_SHOW($emisor,$receptor);";
@@ -35,14 +37,16 @@
             $emisor = $_SESSION["id"];
             //son los datos del json
             $query2 = "CALL sp_MENSAJE_SHOW($emisor,$receptor);";
-                $mensajes = parent::obtenerDatos($query2);
+            $mensajes = parent::obtenerDatos($query2);
                 
-                if(isset($mensajes[0]["RECEPTOR_ID"])){           
-                   return json_encode($mensajes);
-                }else{
-                    $success="NoHayMensajes";
-                    return $success;
-                }
+            if(isset($mensajes[0]["RECEPTOR_ID"])){           
+               return json_encode($mensajes);
+            }else{
+                $success = [
+                "status" => "NoHayMensajes"
+                ];     
+                return json_encode($success);
+            }
         }
 
         public function traerChats(){
@@ -50,7 +54,7 @@
 
             $query2 = "CALL sp_MENSAJE_CHATS($id);";
 
-            $mensajes = parent::obtenerDatos($query2);
+             $mensajes = parent::obtenerDatos($query2);
                 
                 if(isset($mensajes[0]["RECEPTOR_ID"])){           
                    return json_encode($mensajes);
@@ -66,20 +70,20 @@
 
             $datos = json_decode($json,true);
 
-            $id= $datos["receptor"];
+            $id= $_SESSION["id"];
 
-            $EMID = $_SESSION["id"];
+            $EMID = $datos["receptor"];
 
-             $query2 = "CALL sp_MENSAJE_PENDING($id, $EMID);";
+            $query2 = "CALL sp_MENSAJE_PENDING($id, $EMID);";
 
-            $mensajes = parent::obtenerDatos($query2);
+           $mensajes = parent::obtenerDatos($query2);
                 
                 if(isset($mensajes[0]["PENDING"])){           
                    return json_encode($mensajes);
                 }else{
-$success = [
-"status" => "NoHayPendientes"
-];     
+                $success = [
+                "status" => "NoHayPendientes"
+                ];     
                     return json_encode($success);
                 }
         }
@@ -93,7 +97,7 @@ $success = [
             $OtherId = $datos["id"];
             $SesId = $_SESSION["id"];
 
-            $query = "Call sp_MENSAJE_VIEW($SesId, $OtherId);";
+            $query = "Call sp_MENSAJE_VIEW($OtherId, $SesId);";
 
             $verificacion = parent::rowsAfectados($query);
             
@@ -102,9 +106,10 @@ $success = [
                 return $success;
                
             }else{
-                $success="fail";
-
-                return  $success;
+                $success = [
+                    "status" => "NoHayMensajes"
+                    ];     
+                                        return json_encode($success);
 
             
             }

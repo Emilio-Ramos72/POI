@@ -102,6 +102,10 @@ body {
   padding-left: 3%;
 }
 
+#btnLocalización{
+  display: none;
+}
+
 /* Flexbox */
 .contenedorFlex {
   display: flex;
@@ -111,6 +115,7 @@ body {
 .flexItem {
   flex: 1;
 }
+
 
 .pending {
   display: inline-block;

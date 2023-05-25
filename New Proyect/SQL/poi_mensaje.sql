@@ -1,0 +1,60 @@
+-- MySQL dump 10.13  Distrib 8.0.32, for Win64 (x86_64)
+--
+-- Host: localhost    Database: poi
+-- ------------------------------------------------------
+-- Server version	8.0.32
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!50503 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `mensaje`
+--
+
+DROP TABLE IF EXISTS `mensaje`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `mensaje` (
+  `ID` int NOT NULL AUTO_INCREMENT,
+  `MENSAJE` varchar(500) DEFAULT NULL,
+  `HORA` datetime DEFAULT NULL,
+  `VISTO` tinyint(1) DEFAULT '0',
+  `IMAGEN` blob,
+  `FK_IDRECEPTOR` int DEFAULT NULL,
+  `FK_IDEMISSOR` int DEFAULT NULL,
+  PRIMARY KEY (`ID`),
+  KEY `FK_IDRECEPTOR` (`FK_IDRECEPTOR`),
+  KEY `FK_IDEMISSOR` (`FK_IDEMISSOR`),
+  CONSTRAINT `mensaje_ibfk_1` FOREIGN KEY (`FK_IDRECEPTOR`) REFERENCES `usuario` (`ID`),
+  CONSTRAINT `mensaje_ibfk_2` FOREIGN KEY (`FK_IDEMISSOR`) REFERENCES `usuario` (`ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `mensaje`
+--
+
+LOCK TABLES `mensaje` WRITE;
+/*!40000 ALTER TABLE `mensaje` DISABLE KEYS */;
+INSERT INTO `mensaje` VALUES (1,'Hola','2023-04-25 15:50:29',1,NULL,2,1),(2,'Te queria saludar','2023-04-25 15:51:05',1,NULL,2,1),(3,'Hola Nate','2023-04-25 15:52:22',1,NULL,3,1),(4,'Hola Emilio','2023-04-27 12:05:17',NULL,NULL,1,4),(5,'Test','2023-04-27 12:05:28',NULL,NULL,3,4),(6,'Hola Daniel','2023-04-27 12:06:44',1,NULL,4,1),(7,'Si te llegó mi mensaje?','2023-05-23 14:39:17',1,NULL,2,1),(8,'Hola Nate, estas libre?','2023-05-23 14:39:35',1,NULL,3,1),(9,'Hola Daniel, como estas?','2023-05-23 14:39:51',1,NULL,4,1),(10,'estas libre hoy?','2023-05-23 14:40:03',1,NULL,4,1),(11,'test','2023-05-23 15:33:31',1,NULL,4,1),(12,'test','2023-05-23 15:33:35',1,NULL,4,1),(13,'test','2023-05-23 15:33:39',1,NULL,4,1),(14,'test','2023-05-23 15:33:42',1,NULL,4,1),(15,'test','2023-05-23 15:33:47',1,NULL,4,1),(16,'test','2023-05-24 13:27:30',1,NULL,3,1),(17,'test 2','2023-05-24 16:55:55',1,NULL,3,1),(18,'Hola Emilio','2023-05-24 19:16:34',0,NULL,1,3);
+/*!40000 ALTER TABLE `mensaje` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2023-05-24 19:41:16
