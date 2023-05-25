@@ -47,7 +47,8 @@ MENSAJE VARCHAR(500),
 HORA datetime,
 VISTO BOOL default 0,
 ENCRIPTACION BOOL default 0,
-IMAGEN BLOB
+HAYIMG BOOL default 0,
+IMAGEN mediumblob default null
 );
 
 CREATE table TAREAS(
@@ -78,6 +79,7 @@ fk tarea
 
 */
 
+ALTER TABLE MENSAJE MODIFY COLUMN IMAGEN mediumblob default null;
 
 ALTER TABLE EQUIPO
 ADD FK_IDCREADOR INT,

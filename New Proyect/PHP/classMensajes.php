@@ -115,5 +115,37 @@
             }
         }
 
+        public function CrearMsgImagen($json,$foto){
+            $datos = json_decode($json,true);
+
+            $mensaje=$datos['mensaje'];
+            $receptor=$datos['id'];
+            $encriptacion=$datos['valorSlider'];
+            $emisor = $_SESSION["id"];
+            //son los datos del json
+
+            $query = "Call sp_MENSAJE_CrearFoto('$mensaje',$encriptacion,$receptor,$emisor,'$foto',1);";
+            $verificacion = parent::rowsAfectados($query);
+
+
+            if($verificacion == 1){
+                $query2 = "CALL sp_MENSAJE_SHOW($emisor,$receptor);";
+                $mensajes = parent::obtenerDatos($query2);
+                
+                if(isset($mensajes[0]["RECEPTOR_ID"])){           
+                   return json_encode($mensajes);
+                }else{
+                    $success="NoSePudoCrearUnMensaje";
+                    return $success;
+                }
+            }else{
+                $success="fail";
+                return  parent::Error();
+            }
+           ;
+        }
+
+
+
     }
 ?>

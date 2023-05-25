@@ -231,7 +231,7 @@ function ChatfiltrerUsers() {
 function chatSelectUser(id) {
   let btnLoc = document.getElementById("btnLocalización");
   btnLoc.style.display = "inline";
-  //console.log("Selected id", id);
+  console.log("Selected id", id);
   fetch("../php/mensajes.php", {
     method: "POST",
     header: { "Content-Type": "application/json" },
@@ -306,20 +306,102 @@ function chatSelectUser(id) {
             //desencripta el mensaje
             Jason[i]["MENSAJE"] = desencriptar(Jason[i]["MENSAJE"], 5);
           }
-          if (Jason[i]["RECEPTOR_ID"] == id) {
-            secc.innerHTML +=
-              "<div class='conMenP2'><div id='mensajesP1'>" +
-              Jason[i]["MENSAJE"] +
-              " <br />" +
-              Jason[i]["HORA"] +
-              "</div></div>";
+          if (Jason[i]["HAYIMG"] == 1) {
+            console.log("estamos adentro de habe img");
+            alert("estamos adentro de habe img");
+            if (Jason[i]["RECEPTOR_ID"] == id) {
+              /*let blob="../PHP/fotoMsg.php?id="+ Jason[i]["IdMsg"];
+              secc.innerHTML +=
+                  "<div class='conMenP2'><div id='mensajesP1'><img src='"+blob
+                  +"' width='30' height='30' class='' alt='' /><br />" 
+                  +Jason[i]["HORA"] +
+                  "</div></div>";*/
+
+              var div1 = document.createElement("div");
+              div1.setAttribute("class", "conMenP2");
+
+              var div2 = document.createElement("div");
+              div2.setAttribute("id", "mensajesP1");
+
+              var img1 = document.createElement("img");
+              img1.setAttribute(
+                "src",
+                "../PHP/fotoMsg.php?id=" + Jason[i]["IdMsg"]
+              );
+              img1.setAttribute("class", "");
+              img1.setAttribute("width", "50");
+              img1.setAttribute("height", "50");
+              img1.setAttribute("alt", "...");
+
+              var br1 = document.createElement("br");
+              var p1 = document.createElement("p");
+
+              var span1 = document.createElement("span");
+              span1.innerHTML = Jason[i]["HORA"];
+
+              p1.appendChild(span1);
+
+              div2.appendChild(img1);
+              div2.appendChild(br1);
+              div2.appendChild(p1);
+
+              div1.appendChild(div2);
+              secc.appendChild(div1);
+            } else {
+              /*secc.innerHTML +=
+                "<div class='conMenP1'><div id='mensajesP2'><img src='../PHP/fotoMsg.php?id="+ 
+                Jason[i]["IdMsg"]
+                +"' width='30' height='30' class='' alt='' /><br />" +
+                +Jason[i]["HORA"] +
+                "</div></div>";*/
+
+              var div1 = document.createElement("div");
+              div1.setAttribute("class", "conMenP1");
+
+              var div2 = document.createElement("div");
+              div2.setAttribute("id", "mensajesP2");
+
+              var img1 = document.createElement("img");
+              img1.setAttribute(
+                "src",
+                "../PHP/fotoMsg.php?id=" + Jason[i]["IdMsg"]
+              );
+              img1.setAttribute("class", "");
+              img1.setAttribute("width", "100");
+              img1.setAttribute("height", "100");
+              img1.setAttribute("alt", "...");
+
+              var br1 = document.createElement("br");
+              var p1 = document.createElement("p");
+
+              var span1 = document.createElement("span");
+              span1.innerHTML = Jason[i]["HORA"];
+
+              p1.appendChild(span1);
+
+              div2.appendChild(img1);
+              div2.appendChild(br1);
+              div2.appendChild(p1);
+
+              div1.appendChild(div2);
+              secc.appendChild(div1);
+            }
           } else {
-            secc.innerHTML +=
-              "<div class='conMenP1'><div id='mensajesP2'>" +
-              Jason[i]["MENSAJE"] +
-              " <br />" +
-              Jason[i]["HORA"] +
-              "</div></div>";
+            if (Jason[i]["RECEPTOR_ID"] == id) {
+              secc.innerHTML +=
+                "<div class='conMenP2'><div id='mensajesP1'>" +
+                Jason[i]["MENSAJE"] +
+                " <br />" +
+                Jason[i]["HORA"] +
+                "</div></div>";
+            } else {
+              secc.innerHTML +=
+                "<div class='conMenP1'><div id='mensajesP2'>" +
+                Jason[i]["MENSAJE"] +
+                " <br />" +
+                Jason[i]["HORA"] +
+                "</div></div>";
+            }
           }
         }
 
@@ -348,60 +430,140 @@ function sendMessage() {
     valorSlider = 1;
   }
 
-  secc.innerHTML = "";
-  let barra = document.getElementById("barraMensaje");
-  barra.value = null;
-  //console.log(mensaje, "hablando con el id", hablando_con_trampa);
+  var imagenComprobacion = document.getElementById("image").value;
 
-  opc = 1;
-  let id = hablando_con_trampa.id;
+  if (imagenComprobacion.length == 0) {
+    secc.innerHTML = "";
+    let barra = document.getElementById("barraMensaje");
+    barra.value = null;
+    //console.log(mensaje, "hablando con el id", hablando_con_trampa);
 
-  Body = { mensaje, id, valorSlider, opc };
-  jsonBody = JSON.stringify(Body);
+    opc = 1;
+    let id = hablando_con_trampa.id;
 
-  //console.log(Body);
-  //fetch para crear mensaje
+    Body = { mensaje, id, valorSlider, opc };
+    jsonBody = JSON.stringify(Body);
 
-  fetch("../php/mensajes.php", {
-    method: "POST",
-    header: { "Content-Type": "application/json" },
-    body: jsonBody,
-  })
-    .then((response) => {
-      return response.json();
+    //console.log(Body);
+    //fetch para crear mensaje
+
+    fetch("../php/mensajes.php", {
+      method: "POST",
+      header: { "Content-Type": "application/json" },
+      body: jsonBody,
     })
-    .then((data) => {
-      let Jason = data;
-      //.log(Jason);
-      if (Jason != "NoSePudoCrearUnMensaje") {
-        //alert("Podemos crear un nuevo mensaje");
-        //CUANDO ENVIE EL MENSAJE
-        for (let i in Jason) {
-          //console.log(Jason[i]["RECEPTOR_ID"]);
-          if (Jason[i]["ENCRIPTACION"] == 1) {
-            //desencripta el mensaje
-            Jason[i]["MENSAJE"] = desencriptar(Jason[i]["MENSAJE"], 5);
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        let Jason = data;
+        console.log(Jason);
+        if (Jason != "NoSePudoCrearUnMensaje") {
+          //alert("Podemos crear un nuevo mensaje");
+          //CUANDO ENVIE EL MENSAJE
+          for (let i in Jason) {
+            //console.log(Jason[i]["RECEPTOR_ID"]);
+            if (Jason[i]["ENCRIPTACION"] == 1) {
+              //desencripta el mensaje
+              Jason[i]["MENSAJE"] = desencriptar(Jason[i]["MENSAJE"], 5);
+            }
+            if (Jason[i]["RECEPTOR_ID"] == id) {
+              secc.innerHTML +=
+                "<div class='conMenP2'><div id='mensajesP1'>" +
+                Jason[i]["MENSAJE"] +
+                " <br />" +
+                Jason[i]["HORA"] +
+                "</div></div>";
+            } else {
+              secc.innerHTML +=
+                "<div class='conMenP1'><div id='mensajesP2'>" +
+                Jason[i]["MENSAJE"] +
+                " <br />" +
+                Jason[i]["HORA"] +
+                "</div></div>";
+            }
           }
-          if (Jason[i]["RECEPTOR_ID"] == id) {
-            secc.innerHTML +=
-              "<div class='conMenP2'><div id='mensajesP1'>" +
-              Jason[i]["MENSAJE"] +
-              " <br />" +
-              Jason[i]["HORA"] +
-              "</div></div>";
-          } else {
-            secc.innerHTML +=
-              "<div class='conMenP1'><div id='mensajesP2'>" +
-              Jason[i]["MENSAJE"] +
-              " <br />" +
-              Jason[i]["HORA"] +
-              "</div></div>";
-          }
-        }
 
-        //-----
-      } else alert(Jason.result);
-    });
+          //-----
+        } else alert(Jason.result);
+      });
+  } else {
+    secc.innerHTML = "";
+    let barra = document.getElementById("barraMensaje");
+    barra.value = null;
+
+    opc = 1;
+    let id = hablando_con_trampa.id;
+
+    var FoDatos = new FormData();
+    FoDatos.append("mensaje", mensaje);
+    FoDatos.append("id", id);
+    FoDatos.append("valorSlider", valorSlider);
+
+    FoDatos.append("foto", $("#image")[0].files[0]);
+
+    FoDatos.append("opc", opc);
+
+    fetch("../php/mensajesImg.php", { method: "POST", body: FoDatos })
+      .then((response) => {
+        return response.text();
+      })
+      .then((data) => {
+        var Jason = data;
+        console.log(Jason);
+        if (Jason != "NoSePudoCrearUnMensaje") {
+          //alert("Podemos crear un nuevo mensaje");
+          //CUANDO ENVIE EL MENSAJE
+          for (let i in Jason) {
+            //console.log(Jason[i]["RECEPTOR_ID"]);
+            if (Jason[i]["ENCRIPTACION"] == 1) {
+              //desencripta el mensaje
+              Jason[i]["MENSAJE"] = desencriptar(Jason[i]["MENSAJE"], 5);
+            }
+
+            if (Jason[i]["HAYIMG"] == 1) {
+              console.log("estamos adentro de habe img");
+              alert("estamos adentro de habe img");
+              if (Jason[i]["RECEPTOR_ID"] == id) {
+                secc.innerHTML +=
+                  "<div class='conMenP2'><div id='mensajesP1'><img src='../PHP/fotoMsg.php?id=" +
+                  Jason[i]["IdMsg"] +
+                  "' width='30' height='30' class='' alt='' /><br />" +
+                  +Jason[i]["HORA"] +
+                  "</div></div>";
+              } else {
+                secc.innerHTML +=
+                  "<div class='conMenP1'><div id='mensajesP2'><img src='../PHP/fotoMsg.php?id=" +
+                  Jason[i]["IdMsg"] +
+                  "' width='30' height='30' class='' alt='' /><br />" +
+                  +Jason[i]["HORA"] +
+                  "</div></div>";
+              }
+            } else {
+              if (Jason[i]["RECEPTOR_ID"] == id) {
+                secc.innerHTML +=
+                  "<div class='conMenP2'><div id='mensajesP1'>" +
+                  Jason[i]["MENSAJE"] +
+                  " <br />" +
+                  Jason[i]["HORA"] +
+                  "</div></div>";
+              } else {
+                secc.innerHTML +=
+                  "<div class='conMenP1'><div id='mensajesP2'>" +
+                  Jason[i]["MENSAJE"] +
+                  " <br />" +
+                  Jason[i]["HORA"] +
+                  "</div></div>";
+              }
+            }
+          }
+
+          //-----
+        } else alert(Jason.result);
+        //"status" => "ok",
+        //"result" => array()
+      });
+  }
 }
 
 function getLocation() {
