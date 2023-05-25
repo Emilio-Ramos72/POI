@@ -180,6 +180,8 @@ function ChatfiltrerUsers() {
 }
 
 function chatSelectUser(id) {
+  let btnLoc=document.getElementById("btnLocalización");
+  btnLoc.style.display="inline";
   console.log("Selected id", id);
   fetch("../php/mensajes.php", {
     method: "POST",
@@ -314,7 +316,7 @@ function sendMessage() {
       let Jason = data;
       console.log(Jason);
       if (Jason != "NoSePudoCrearUnMensaje") {
-        alert("Podemos crear un nuevo mensaje");
+      //alert("Podemos crear un nuevo mensaje");
         //CUANDO ENVIE EL MENSAJE
         for (let i in Jason) {
           //console.log(Jason[i]["RECEPTOR_ID"]);
@@ -354,6 +356,67 @@ function showPosition(position) {
   var latitude = position.coords.latitude;
   var longitude = position.coords.longitude;
 
+  console.log("latitud actual",latitude);
+  console.log("longitud actual",longitude);
+  sendLocalizacion(latitude,longitude);
   // Aquí puedes enviar la ubicación al servidor PHP utilizando AJAX
+}
+
+function sendLocalizacion(latitud, longitud) {
+  
+  let mensaje="Mi localización actual es: Latitud: "+latitud+ " Longitud: "+longitud;
+  let secc = document.getElementById("mensajesActuales");
+  secc.innerHTML = "";
+  let barra = document.getElementById("barraMensaje");
+  barra.value = null;
+  //console.log(mensaje, "hablando con el id", hablando_con_trampa);
+
+  opc = 1;
+  let id = hablando_con_trampa.id;
+
+  Body = { mensaje, id, opc };
+  jsonBody = JSON.stringify(Body);
+
+  //console.log(Body);
+  //fetch para crear mensaje
+
+  fetch("../php/mensajes.php", {
+    method: "POST",
+    header: { "Content-Type": "application/json" },
+    body: jsonBody,
+  })
+    .then((response) => {
+      return response.json();
+    })
+    .then((data) => {
+      let Jason = data;
+      console.log(Jason);
+      if (Jason != "NoSePudoCrearUnMensaje") {
+      //alert("Podemos crear un nuevo mensaje");
+        //CUANDO ENVIE EL MENSAJE
+        for (let i in Jason) {
+          //console.log(Jason[i]["RECEPTOR_ID"]);
+
+          if (Jason[i]["RECEPTOR_ID"] == id) {
+            secc.innerHTML +=
+              "<div class='conMenP2'><div id='mensajesP1'>" +
+              Jason[i]["MENSAJE"] +
+              " <br />" +
+              Jason[i]["HORA"] +
+              "</div></div>";
+          } else {
+            secc.innerHTML +=
+              "<div class='conMenP1'><div id='mensajesP2'>" +
+              Jason[i]["MENSAJE"] +
+              " <br />" +
+              Jason[i]["HORA"] +
+              "</div></div>";
+          }
+        }
+
+        //-----
+      } else alert(Jason.result);
+    });
+
 }
 
