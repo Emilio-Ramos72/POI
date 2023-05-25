@@ -8,5 +8,5 @@ chat a buscar, se manda el usuario en sesion
 call sp_MENSAJE_CHATS(2)
 
 call sp_MENSAJE_PENDING(3,1)
-call sp_MENSAJE_SHOW(3,4)
+call sp_MENSAJE_SHOW(3,1)
 

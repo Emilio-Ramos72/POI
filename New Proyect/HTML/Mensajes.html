@@ -22,6 +22,12 @@
     <script type="text/javascript" src="../JAVA/CreateMensaje.js"></script>
     <script type="text/javascript" src="../JAVA/onLeave.js"></script>
 
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cloudinary-core/2.10.0/cloudinary-core.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script type="text/javascript" src="../JAVA/cloudinaryApi.js"></script>
+
     <link
       href="https://fonts.googleapis.com/css2?family=Nunito:wght@300&family=Raleway:wght@400;411;437&display=swap"
       rel="stylesheet"
@@ -115,7 +121,18 @@
               placeholder="Escribe algo..."
             />
             <input type="button" id="btnEnviar" onclick="sendMessage()" />
-           
+            <div class="group" required>
+              <label for="image"></label>
+              <input
+                class="controls"
+                class="form-error"
+                type="file"
+                name="image"
+                id="image"
+                placeholder="Img"
+                required
+              />
+            </div>
             <button id="btnLocalización"  onclick="getLocation()">Compartir ubicación</button>
           </div>
         </div>
